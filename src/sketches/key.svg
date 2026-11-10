@@ -1,0 +1,10 @@
+<svg class="sketch" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+  <g filter="url(#marker)">
+    <rect x="34" y="66" width="252" height="68" rx="12"/>
+    <path class="accent" d="M68 88v24M58 94l20 12M78 94l-20 12"/>
+    <path class="accent" d="M114 88v24M104 94l20 12M124 94l-20 12"/>
+    <path class="accent" d="M160 88v24M150 94l20 12M170 94l-20 12"/>
+    <path class="accent" d="M206 88v24M196 94l20 12M216 94l-20 12"/>
+    <path d="M250 84v32"/>
+  </g>
+</svg>
