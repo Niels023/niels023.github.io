@@ -1,0 +1,85 @@
+/* Light theme: a whiteboard with marker ink. */
+:root {
+  color-scheme: light;
+
+  --page: #f1f3f2;
+  --board: #ffffff;
+  --frame: #c4cbd0;
+  --tray: #e3e7e9;
+  --line: #d9dee1;
+  --ink: #1b2430;
+  --ink-soft: #4a5565;
+  --accent: #1f4fd8;
+  --on-accent: #ffffff;
+  --note: #d62839;
+  --ok: #17804f;
+  --marker-1: #1b2430;
+  --marker-2: #1f4fd8;
+  --marker-3: #d62839;
+  --marker-4: #17804f;
+  --shadow: 0 1px 2px rgb(27 36 48 / 8%), 0 14px 30px -18px rgb(27 36 48 / 35%);
+
+  --font-text: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+  --font-head: 'Instrument Sans', system-ui, sans-serif;
+  --font-hand: 'Shantell Sans', 'Segoe Print', cursive;
+
+  --text: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-large: clamp(1.125rem, 1.04rem + 0.45vw, 1.3125rem);
+  --title-2: clamp(1.875rem, 1.45rem + 2vw, 2.75rem);
+  --title-3: clamp(1.3125rem, 1.2rem + 0.5vw, 1.5rem);
+
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --radius: 12px;
+}
+
+/*
+  Dark theme: a chalkboard. The same colours are set twice, once for visitors
+  whose system is dark and once for visitors who picked dark with the button.
+  Both blocks only apply on screen, so print and the cv PDF are always light.
+*/
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --page: #131b18;
+    --board: #1d2b25;
+    --frame: #40524a;
+    --tray: #26342e;
+    --line: #2b3a33;
+    --ink: #efede4;
+    --ink-soft: #b3bcb2;
+    --accent: #f2d45c;
+    --on-accent: #131b18;
+    --note: #f4a39b;
+    --ok: #a9d8a3;
+    --marker-1: #efede4;
+    --marker-2: #f2d45c;
+    --marker-3: #f4a39b;
+    --marker-4: #9cc9f2;
+    --shadow: 0 14px 30px -18px rgb(0 0 0 / 70%);
+  }
+}
+
+@media screen {
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --page: #131b18;
+    --board: #1d2b25;
+    --frame: #40524a;
+    --tray: #26342e;
+    --line: #2b3a33;
+    --ink: #efede4;
+    --ink-soft: #b3bcb2;
+    --accent: #f2d45c;
+    --on-accent: #131b18;
+    --note: #f4a39b;
+    --ok: #a9d8a3;
+    --marker-1: #efede4;
+    --marker-2: #f2d45c;
+    --marker-3: #f4a39b;
+    --marker-4: #9cc9f2;
+    --shadow: 0 14px 30px -18px rgb(0 0 0 / 70%);
+  }
+}

@@ -1,0 +1,252 @@
+.hero {
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+}
+
+.hero__board {
+  display: grid;
+  align-content: center;
+  min-height: clamp(27rem, 70vh, 38rem);
+  padding: clamp(1.5rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* touch-action keeps a finger from scrolling the page while it draws. */
+.hero__board.is-drawing .hero__canvas {
+  touch-action: none;
+}
+
+/* The text block lets clicks through, so you can draw right next to it. */
+.hero__text {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: 1.25rem;
+  pointer-events: none;
+}
+
+.hero__text > * {
+  pointer-events: auto;
+}
+
+.hero__title {
+  position: relative;
+  padding-bottom: 0.22em;
+  font-family: var(--font-hand);
+  font-size: clamp(2.75rem, 1.5rem + 6.5vw, 6rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.hero__underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.hero__underline path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  animation: draw-line 0.7s 0.4s ease-out backwards;
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.hero__intro {
+  max-width: 34rem;
+  font-size: var(--text-large);
+}
+
+.hero__facts {
+  color: var(--ink-soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.hero__hint {
+  display: none;
+}
+
+/* The tray under the board holds the markers. It needs JavaScript. */
+.tray {
+  display: none;
+}
+
+.js .tray {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 0.75rem;
+  width: fit-content;
+  max-width: calc(100% - 1.5rem);
+  margin-inline: auto clamp(0.75rem, 5vw, 3.5rem);
+  padding: 0.25rem 0.5rem;
+  border: 2px solid var(--frame);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  background: var(--tray);
+}
+
+.tray button {
+  color: inherit;
+  font: inherit;
+  font-size: var(--text-small);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tray__draw,
+.tray__clear {
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: none;
+}
+
+.tray__clear {
+  display: inline-flex;
+}
+
+/* A mouse can always draw, so the switch is only there for touch screens. */
+.tray__draw {
+  display: none;
+}
+
+.tray__draw:hover,
+.tray__clear:hover {
+  color: var(--accent);
+}
+
+.tray__draw[aria-pressed='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--board);
+}
+
+.tray__draw svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tray__colors {
+  display: flex;
+}
+
+.tray__color {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+}
+
+.tray__color::before {
+  content: '';
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--marker);
+}
+
+.tray__color[aria-pressed='true']::before {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.tray__color--1 {
+  --marker: var(--marker-1);
+}
+
+.tray__color--2 {
+  --marker: var(--marker-2);
+}
+
+.tray__color--3 {
+  --marker: var(--marker-3);
+}
+
+.tray__color--4 {
+  --marker: var(--marker-4);
+}
+
+/* On a touch screen the colours and the eraser show once drawing is on. */
+@media (any-pointer: coarse) {
+  .tray__draw {
+    display: inline-flex;
+  }
+
+  .tray:not(.is-drawing) .tray__colors,
+  .tray:not(.is-drawing) .tray__clear {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero__canvas {
+    cursor: crosshair;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 62rem) {
+  .js .hero__board:not(.has-drawing) .hero__hint {
+    position: absolute;
+    right: 8%;
+    bottom: 9%;
+    display: grid;
+    gap: 0.25rem;
+    color: var(--ink-soft);
+    font-family: var(--font-hand);
+    font-size: 1.25rem;
+    font-weight: 500;
+    transform: rotate(-4deg);
+    pointer-events: none;
+  }
+
+  .hero__hint svg {
+    width: 3.25rem;
+    margin-left: auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__underline path {
+    animation: none;
+  }
+}

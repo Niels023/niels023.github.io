@@ -1,0 +1,156 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+  background: var(--page);
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  min-height: 4rem;
+}
+
+.site-name {
+  margin-right: auto;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.site-nav a:not(.button) {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  text-decoration: none;
+}
+
+.site-nav a:not(.button):hover,
+.site-nav a[aria-current] {
+  text-decoration: underline;
+}
+
+.site-nav .button {
+  margin-left: 0.5rem;
+}
+
+.site-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.language-switch {
+  display: flex;
+  overflow: hidden;
+  border: 2px solid var(--frame);
+  border-radius: 8px;
+}
+
+.language-switch a {
+  display: grid;
+  place-items: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  font-size: var(--text-small);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.language-switch a:focus-visible {
+  outline-offset: -3px;
+}
+
+.language-switch a[aria-current] {
+  background: var(--ink);
+  color: var(--board);
+}
+
+/* Both buttons need JavaScript, so they only show when it runs. */
+.theme-toggle,
+.menu-button {
+  display: none;
+}
+
+.js .theme-toggle {
+  display: inline-flex;
+}
+
+.theme-toggle__moon,
+.theme-toggle[aria-pressed='true'] .theme-toggle__sun {
+  display: none;
+}
+
+.theme-toggle[aria-pressed='true'] .theme-toggle__moon {
+  display: block;
+}
+
+@media (max-width: 61.99rem) {
+  .js .menu-button {
+    display: inline-flex;
+  }
+
+  .js .site-nav {
+    display: none;
+  }
+
+  .js .site-nav.is-open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+    padding: 0.5rem var(--gutter) 1.5rem;
+    border-bottom: 2px solid var(--frame);
+    background: var(--page);
+  }
+
+  .js .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .js .site-nav a:not(.button) {
+    padding: 0.85rem 0.25rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.125rem;
+  }
+
+  .js .site-nav .button {
+    margin: 1.25rem 0 0;
+  }
+
+  /* Without JavaScript there is no menu button: the links wrap below the bar. */
+  .no-js .site-header {
+    position: static;
+  }
+
+  .no-js .site-header__bar {
+    flex-wrap: wrap;
+    padding-block: 0.5rem;
+  }
+
+  .no-js .site-nav {
+    order: 3;
+    width: 100%;
+  }
+
+  .no-js .site-nav__list {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 23.99rem) {
+  .site-name {
+    font-size: 1.0625rem;
+  }
+}
