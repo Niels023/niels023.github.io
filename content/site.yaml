@@ -1,0 +1,32 @@
+# Facts that are the same in both languages.
+
+name: Niels van der Pijl
+url: https://nielspijl.com
+email: nielsvanderpijl023@gmail.com
+city: Haarlem
+github: https://github.com/Niels023
+linkedin: https://www.linkedin.com/in/niels-van-der-pijl-baa52525b/
+sourceCode: https://github.com/Niels023/niels023.github.io
+
+# File name of a portrait in src/static/assets/images, for example niels.webp.
+# While this says TODO the site shows a drawn monogram instead.
+photo: TODO
+
+skills:
+  code:
+    - Java
+    - Python
+    - C#
+    - PHP
+    - SQL (MySQL)
+    - HTML
+    - CSS
+    - JavaScript
+  tools:
+    - Android Studio
+    - Visual Studio Code
+    - Visual Studio
+    - Godot
+    - Power Automate
+    - Git
+    - GitHub

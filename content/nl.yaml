@@ -1,0 +1,163 @@
+# All Dutch text of the site and the cv. en.yaml has the same parts in English.
+# Wrap an English term in <en>...</en> so screen readers pronounce it correctly.
+
+meta:
+  homeTitle: Niels van der Pijl, student Software Development uit Haarlem
+  homeDescription: >-
+    Ik ben Niels, student Software Development uit Haarlem. Bekijk mijn projecten in PHP, Java en
+    Python, lees mijn cv of neem contact op.
+  cvTitle: Cv van Niels van der Pijl
+  cvDescription: >-
+    Het cv van Niels van der Pijl, student Software Development (MBO 4). Met opleiding,
+    werkervaring, vaardigheden en projecten. Ook als PDF te downloaden.
+  shareLine: Student Software Development uit Haarlem
+  shareImageAlt: Whiteboard met de naam Niels van der Pijl erop geschreven
+
+a11y:
+  skipLink: Ga naar de inhoud
+  mainMenu: Hoofdmenu
+  menuButton: Menu
+  darkTheme: Donker thema
+  languages: Taal
+
+nav:
+  projects: Projecten
+  skills: Vaardigheden
+  about: Over mij
+  cv: Cv
+  contact: Contact
+  downloadCv: Download cv
+
+hero:
+  title: Hoi, ik ben Niels.
+  intro: >-
+    Als kind keek ik mee als de ICT'ers het digibord op school kwamen maken. Nu bouw ik zelf apps,
+    games en tools die echt gebruikt worden.
+  facts: Student <en>Software Development</en> (MBO 4) uit Haarlem
+  showProjects: Bekijk mijn projecten
+  downloadCv: Download mijn cv (PDF)
+  board:
+    hint: Teken gerust mee
+    draw: Teken op het bord
+    color: Kleur
+    clear: Veeg het bord schoon
+
+projects:
+  title: Projecten
+  intro: Dingen die ik alleen, met klasgenoten of op mijn stage heb gebouwd.
+  learned: Wat ik leerde
+  madeWith: Gemaakt met
+  smaller: Kleinere projecten
+  screenshotOf: Schermafbeelding van
+
+skills:
+  title: Vaardigheden
+  code: Code
+  tools: Tools
+  languages: Talen
+  now: Nu bezig met
+  nowText: Blackjack bouwen in de Android minigames app, als OOP-project.
+
+languages:
+  - name: Nederlands
+    level: moedertaal
+  - name: Engels
+    level: vloeiend, Cambridge-certificaat B2
+
+about:
+  title: Over mij
+  paragraphs:
+    - >-
+      Ik ben Niels van der Pijl. Ik woon in Haarlem en studeer <en>Software Development</en>
+      (MBO 4) bij Nova College. Ik wil weten hoe dingen werken en bouw ze het liefst zelf. In mijn
+      vrije tijd maak ik apps en games.
+    - >-
+      In 2026 liep ik stage bij Functioneel Beheer van de Gemeente Haarlem. Daar bracht ik in kaart
+      voor welke applicaties een testplan bestond, en bouwde ik <en>flows</en> die dat overzicht
+      automatisch bijwerken.
+  experience: Ervaring
+  education: Opleiding
+  fullCv: Bekijk mijn hele cv
+  photoAlt: Foto van Niels van der Pijl
+
+contact:
+  title: Contact
+  intro: Wil je iets vragen of heb je een idee? Mail me of stuur een bericht via LinkedIn.
+  email: E-mail
+  copy: Kopieer adres
+  copied: Gekopieerd
+  city: Woonplaats
+
+cv:
+  role: Student <en>Software Development</en> (MBO 4)
+  profileTitle: Profiel
+  profile: >-
+    Student <en>Software Development</en> uit Haarlem. Ik bouw apps, games en tools en wil weten
+    hoe dingen werken. Tijdens mijn stage bij de Gemeente Haarlem automatiseerde ik de controle op
+    testplannen met Power Automate.
+  experienceTitle: Werkervaring
+  educationTitle: Opleiding
+  skillsTitle: Vaardigheden
+  projectsTitle: Projecten
+  languagesTitle: Talen
+  contactTitle: Contact
+  website: Website
+  download: Download als PDF
+  print: Print dit cv
+  back: Terug naar de site
+  updated: Bijgewerkt in
+
+  experience:
+    - title: Stage Functioneel Beheer
+      place: Gemeente Haarlem
+      period: 2026
+      note: BPV-stage van 80 dagen, afgerond in oktober 2026.
+      points:
+        - >-
+          Alle gemeentelijke applicaties geïnventariseerd op de vraag of er een testplan voor is,
+          per domein en per beheerder, in één Excel-overzicht.
+        - >-
+          Een uniform testplansjabloon gemaakt dat de losse formats van de verschillende teams
+          vervangt.
+        - >-
+          Met Power Automate twee <en>flows</en> gebouwd die in SharePoint controleren of er per
+          applicatie een testplan staat en het overzicht automatisch bijwerken, met grafieken per
+          domein.
+        - Samen met functioneel beheerders testplannen opgesteld en uitgevoerd.
+        - Een collega ingewerkt die het werk na mijn stage voortzet.
+    - title: Snuffelstage Functioneel Beheer
+      place: Gemeente Haarlem
+      period: 2023
+      note: In de derde klas van de mavo.
+      points:
+        - Medewerkers geholpen met vragen over software en interne applicaties.
+        - Schakel tussen gebruikers en de technische afdeling bij problemen.
+        - Nieuwe functies en updates getest voordat ze live gingen.
+
+  education:
+    - title: MBO 4 <en>Software Developer</en>
+      place: Nova College, Beverwijk
+      period: 2024 tot nu
+      points:
+        - Examens Nederlands, Engels en rekenen behaald.
+        - Diploma verwacht in 2027.
+    - title: VMBO-TL
+      place: De Hartenlust, Bloemendaal
+      period: 2020 tot 2024
+      points:
+        - Diploma behaald.
+        - >-
+          Vakken: Nederlands, Engels (met Cambridge-certificaat B2), wiskunde, IT, economie en
+          aardrijkskunde.
+
+footer:
+  built: Gebouwd met HTML, CSS en JavaScript, zonder framework.
+  source: Bekijk de code op GitHub
+
+notFound:
+  title: Pagina niet gevonden
+  text: Deze pagina bestaat niet of is verplaatst.
+  home: Naar de startpagina
+
+console:
+  hello: Hoi! Benieuwd hoe deze site gemaakt is? De code staat op

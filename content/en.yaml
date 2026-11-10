@@ -1,0 +1,164 @@
+# All English text of the site and the cv. nl.yaml has the same parts in Dutch.
+# Wrap a Dutch term in <nl>...</nl> so screen readers pronounce it correctly.
+
+meta:
+  homeTitle: Niels van der Pijl, Software Development student from Haarlem
+  homeDescription: >-
+    I'm Niels, a Software Development student from Haarlem. Have a look at my projects in PHP,
+    Java and Python, read my CV or get in touch.
+  cvTitle: CV of Niels van der Pijl
+  cvDescription: >-
+    The CV of Niels van der Pijl, Software Development student. With education, work experience,
+    skills and projects. Also available as a PDF.
+  shareLine: Software Development student from Haarlem
+  shareImageAlt: Whiteboard with the name Niels van der Pijl written on it
+
+a11y:
+  skipLink: Skip to content
+  mainMenu: Main menu
+  menuButton: Menu
+  darkTheme: Dark theme
+  languages: Language
+
+nav:
+  projects: Projects
+  skills: Skills
+  about: About
+  cv: CV
+  contact: Contact
+  downloadCv: Download CV
+
+hero:
+  title: Hi, I'm Niels.
+  intro: >-
+    As a kid I'd watch whenever IT came in to fix the smartboard at school. Now I build my own
+    apps, games and tools that people actually use.
+  facts: Software Development student (MBO level 4) from Haarlem, the Netherlands
+  showProjects: See my projects
+  downloadCv: Download my CV (PDF)
+  board:
+    hint: Feel free to draw
+    draw: Draw on the board
+    color: Colour
+    clear: Wipe the board
+
+projects:
+  title: Projects
+  intro: Things I've built on my own, with classmates and during my internship.
+  learned: What I learned
+  madeWith: Built with
+  smaller: Smaller projects
+  screenshotOf: Screenshot of
+
+skills:
+  title: Skills
+  code: Code
+  tools: Tools
+  languages: Languages
+  now: Working on now
+  nowText: Building blackjack into the Android minigames app, as an OOP project.
+
+languages:
+  - name: Dutch
+    level: native
+  - name: English
+    level: fluent, Cambridge certificate B2
+
+about:
+  title: About me
+  paragraphs:
+    - >-
+      I'm Niels van der Pijl. I live in Haarlem and study Software Development (MBO level 4) at
+      Nova College. I like to know how things work, and I'd rather build them myself. In my spare
+      time I make apps and games.
+    - >-
+      In 2026 I did an internship with the Functional Management team at the Municipality of
+      Haarlem. I mapped out which applications had a test plan, and built flows that keep that
+      overview up to date automatically.
+  experience: Experience
+  education: Education
+  fullCv: Read my full CV
+  photoAlt: Photo of Niels van der Pijl
+
+contact:
+  title: Contact
+  intro: Got a question or an idea? Send me an email or a message on LinkedIn.
+  email: Email
+  copy: Copy address
+  copied: Copied
+  city: Location
+
+cv:
+  role: Software Development student (MBO level 4)
+  profileTitle: Profile
+  profile: >-
+    Software Development student from Haarlem. I build apps, games and tools, and I like to know
+    how things work. During my internship at the Municipality of Haarlem I automated the checks on
+    test plans with Power Automate.
+  experienceTitle: Work experience
+  educationTitle: Education
+  skillsTitle: Skills
+  projectsTitle: Projects
+  languagesTitle: Languages
+  contactTitle: Contact
+  website: Website
+  download: Download as PDF
+  print: Print this CV
+  back: Back to the site
+  updated: Last updated in
+
+  experience:
+    - title: Intern, Functional Management
+      place: Municipality of Haarlem
+      period: 2026
+      note: An 80-day work placement, completed in October 2026.
+      points:
+        - >-
+          Took stock of every municipal application to see whether it had a test plan, by domain
+          and by application manager, in a single Excel overview.
+        - >-
+          Created one standard test plan template to replace the separate formats used by
+          different teams.
+        - >-
+          Built two Power Automate flows that check in SharePoint whether each application has a
+          test plan and update the overview automatically, with charts per domain.
+        - Wrote and carried out test plans together with application managers.
+        - Trained a colleague who is continuing the work after my internship.
+    - title: Work experience placement, Functional Management
+      place: Municipality of Haarlem
+      period: 2023
+      note: During my third year of secondary school.
+      points:
+        - Helped staff with questions about software and internal applications.
+        - Acted as the link between users and the technical department when problems came up.
+        - Tested new features and updates before they went live.
+
+  education:
+    - title: <nl>MBO</nl> 4 Software Developer
+      place: Nova College, Beverwijk
+      period: 2024 to present
+      points:
+        - >-
+          Senior secondary vocational education, level 4. Passed the exams for Dutch, English and
+          maths.
+        - Diploma expected in 2027.
+    - title: <nl>VMBO-TL</nl>
+      place: De Hartenlust, Bloemendaal
+      period: 2020 to 2024
+      points:
+        - Pre-vocational secondary education. Diploma obtained.
+        - >-
+          Subjects: Dutch, English (with a Cambridge certificate at B2 level), mathematics, IT,
+          economics and geography.
+
+footer:
+  built: Built with HTML, CSS and JavaScript, no framework.
+  source: View the code on GitHub
+
+notFound:
+  title: Page not found
+  text: This page doesn't exist or has moved.
+  home: Go to the homepage
+
+console:
+  hello: Hi! Curious how this site was made? The code is at

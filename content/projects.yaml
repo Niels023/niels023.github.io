@@ -1,0 +1,185 @@
+# One entry per project, in the order they appear on the site.
+#
+# featured  true gives the project a large card with a drawing, false a short row.
+# onCv      true also lists the project on the cv.
+# sketch    drawing from src/sketches that is shown until there is a screenshot.
+# image     file name of a screenshot in src/static/assets/images, TODO while there is none.
+# links     optional, each with a url and a label per language.
+# status, learned and note are optional texts.
+
+- id: pc-bouwplanner
+  featured: true
+  onCv: true
+  sketch: parts
+  image: TODO
+  tech:
+    - PHP
+    - MySQL
+  links:
+    - url: https://github.com/Niels023/pc-bouwplanner
+      nl: Code op GitHub
+      en: Code on GitHub
+  nl:
+    title: PC-bouwplanner
+    summary: >-
+      Een website waarop je zelf een pc samenstelt. Hij controleert of de onderdelen bij elkaar
+      passen, telt prijs en stroomverbruik op en stelt een <en>build</en> voor op basis van je
+      budget en doel. Een schoolproject dat ik alleen heb gemaakt.
+    learned: >-
+      Hoe je een database opzet waarmee je kunt controleren of onderdelen bij elkaar passen, en
+      hoe je in je eentje een project van begin tot eind plant.
+  en:
+    title: PC build planner
+    summary: >-
+      A website for putting together your own PC. It checks whether the parts are compatible, adds
+      up the price and power draw, and suggests a build for your budget and what you want to use it
+      for. A school project I built on my own.
+    learned: >-
+      How to set up a database that lets you check whether parts fit together, and how to plan a
+      project from start to finish when you are the only one working on it.
+
+- id: android-minigames
+  featured: true
+  onCv: true
+  sketch: sudoku
+  image: TODO
+  tech:
+    - Java
+    - Android Studio
+  links:
+    - url: https://github.com/Niels023/android-minigames-app
+      nl: Code op GitHub
+      en: Code on GitHub
+  nl:
+    title: Android minigames app
+    status: Nog in ontwikkeling
+    summary: >-
+      Een Android-app met minigames die ik samen met klasgenoten bouw. Mijn deel van de sudoku is
+      af. Nu bouw ik er blackjack in als OOP-project.
+    learned: >-
+      Samenwerken in één repo met <en>branches</en>, en mijn eigen deel duidelijk afbakenen.
+  en:
+    title: Android minigames app
+    status: Still in development
+    summary: >-
+      An Android app with minigames that I am building with classmates. My part of the sudoku is
+      done. I am now adding blackjack as an OOP project.
+    learned: >-
+      Working in a shared repo with branches, and keeping my own part clearly separated from the
+      rest.
+
+- id: claudot
+  featured: true
+  onCv: true
+  sketch: bridge
+  image: TODO
+  tech:
+    - Python
+    - GDScript
+  links:
+    - url: https://github.com/Claudot-Code/claudot-pub/pulls?q=is%3Apr+author%3ANiels023+is%3Amerged
+      nl: Mijn gemergde <en>pull requests</en>
+      en: My merged pull requests
+    - url: https://github.com/Niels023/claudot-pub
+      nl: Mijn fork
+      en: My fork
+  nl:
+    title: Bijdragen aan Claudot
+    status: Open source
+    summary: >-
+      Claudot is een add-on voor de Godot-editor. Ik vond meerdere bugs, meldde ze als
+      <en>issues</en> en loste ze op met vier <en>pull requests</en> die de <en>maintainer</en>
+      heeft gemerged. Onder andere de verbinding van de <en>bridge</en> op Windows, een proces dat
+      bleef draaien nadat Godot was afgesloten, en het versielabel met de link naar de
+      <en>releases</en>.
+    learned: >-
+      Me inlezen in code van iemand anders en een bug zo beschrijven dat een ander hem kan volgen.
+      En dat een <en>fix</en> soms betekent dat je code weghaalt in plaats van toevoegt.
+  en:
+    title: Contributions to Claudot
+    status: Open source
+    summary: >-
+      Claudot is an add-on for the Godot editor. I found several bugs, reported them as issues and
+      fixed them in four pull requests that the maintainer merged. Among them the bridge connection
+      on Windows, a process that kept running after Godot was closed, and the version label with
+      its link to the releases.
+    learned: >-
+      Finding my way around someone else's code and describing a bug so that someone else can
+      follow it. And that a fix sometimes means removing code instead of adding it.
+
+- id: testplannen
+  featured: true
+  onCv: false
+  sketch: checklist
+  image: TODO
+  tech:
+    - Power Automate
+    - SharePoint
+    - Excel
+  nl:
+    title: Testplannen automatiseren bij Gemeente Haarlem
+    status: Stageproject
+    note: Werkproject, dus geen openbare code.
+    summary: >-
+      Tijdens mijn stage bouwde ik met Power Automate twee <en>flows</en> die in SharePoint
+      controleren of er per applicatie een testplan staat. Ze werken het overzicht automatisch bij,
+      met grafieken per domein. Ook maakte ik één sjabloon dat de losse formats van de teams
+      vervangt.
+    learned: >-
+      Het moeilijkste was niet de techniek, maar mensen meekrijgen. Daarom heb ik de aanpak
+      aangepast, zodat beheerders er minder werk aan hadden.
+  en:
+    title: Automating test plans at the Municipality of Haarlem
+    status: Internship project
+    note: Built at work, so there is no public code.
+    summary: >-
+      During my internship I built two Power Automate flows that check in SharePoint whether each
+      application has a test plan. They keep the overview up to date automatically, with charts per
+      domain. I also made a single template to replace the separate formats the teams were using.
+    learned: >-
+      The hard part was not the technology, it was getting people on board. So I changed the
+      approach to make it less work for the application managers.
+
+- id: password-generator
+  featured: false
+  onCv: false
+  sketch: key
+  image: TODO
+  tech:
+    - Python
+  links:
+    - url: https://github.com/Niels023/password-generator
+      nl: Code op GitHub
+      en: Code on GitHub
+  nl:
+    title: Password generator
+    summary: >-
+      Een veilige wachtwoordgenerator voor de <en>command line</en>, geschreven in Python.
+  en:
+    title: Password generator
+    summary: >-
+      A secure password generator for the command line, written in Python.
+
+- id: sentiment-analyzer
+  featured: false
+  onCv: false
+  sketch: faces
+  image: TODO
+  tech:
+    - Python
+    - Tkinter
+    - Hugging Face
+  links:
+    - url: https://github.com/Niels023/ai-sentiment-analyzer
+      nl: Code op GitHub
+      en: Code on GitHub
+  nl:
+    title: AI sentiment analyzer
+    summary: >-
+      Een desktop-app die het sentiment van tekst bepaalt, met een transformer-model van Hugging
+      Face.
+  en:
+    title: AI sentiment analyzer
+    summary: >-
+      A desktop app that works out the sentiment of a piece of text, using a transformer model from
+      Hugging Face.
