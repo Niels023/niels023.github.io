@@ -31,8 +31,8 @@ nav:
 hero:
   title: Hoi, ik ben Niels.
   intro: >-
-    Als kind keek ik mee als de ICT'ers het digibord op school kwamen maken. Nu bouw ik zelf apps,
-    games en tools die echt gebruikt worden.
+    Ik ben altijd al met ICT bezig geweest. Nu bouw ik zelf apps, games en tools die echt gebruikt
+    worden.
   facts: Student <en>Software Development</en> (MBO 4) uit Haarlem
   showProjects: Bekijk mijn projecten
   downloadCv: Download mijn cv (PDF)
@@ -56,7 +56,7 @@ skills:
   tools: Tools
   languages: Talen
   now: Nu bezig met
-  nowText: Blackjack bouwen in de Android minigames app, als OOP-project.
+  nowText: De opdrachten van mijn opleiding <en>Software Development</en>.
 
 languages:
   - name: Nederlands

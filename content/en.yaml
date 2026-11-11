@@ -31,8 +31,7 @@ nav:
 hero:
   title: Hi, I'm Niels.
   intro: >-
-    As a kid I'd watch whenever IT came in to fix the smartboard at school. Now I build my own
-    apps, games and tools that people actually use.
+    I've always been into IT. Now I build my own apps, games and tools that people actually use.
   facts: Software Development student (MBO level 4) from Haarlem, the Netherlands
   showProjects: See my projects
   downloadCv: Download my CV (PDF)
@@ -56,7 +55,7 @@ skills:
   tools: Tools
   languages: Languages
   now: Working on now
-  nowText: Building blackjack into the Android minigames app, as an OOP project.
+  nowText: The assignments for my Software Development course.
 
 languages:
   - name: Dutch
