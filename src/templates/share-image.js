@@ -12,40 +12,20 @@ export function renderShareImage({ site, t, lang }) {
 <style>
   body {
     display: grid;
-    width: 1200px;
-    height: 630px;
-    padding: 44px;
-  }
-
-  .board {
-    display: grid;
     align-content: center;
     gap: 22px;
-    padding: 0 76px;
-    border-width: 4px;
-    border-radius: 20px;
+    width: 1200px;
+    height: 630px;
+    padding: 0 88px;
+    border-left: 28px solid var(--accent);
   }
 
   .name {
-    position: relative;
-    width: fit-content;
-    padding-bottom: 26px;
-    font-family: var(--font-hand);
-    font-size: 108px;
-    font-weight: 500;
+    font-family: var(--font-head);
+    font-size: 104px;
+    font-weight: 700;
     line-height: 1;
-  }
-
-  .name svg {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow: visible;
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 3;
-    stroke-linecap: round;
+    letter-spacing: -0.035em;
   }
 
   .line {
@@ -59,14 +39,9 @@ export function renderShareImage({ site, t, lang }) {
 </style>
 </head>
 <body>
-  <div class="board">
-    <p class="name">
-      ${plain(site.name)}
-      <svg viewBox="0 0 300 18"><path d="M3 11 C40 5 85 15 130 9 S215 5 297 10"/></svg>
-    </p>
-    <p class="line">${text(t.meta.shareLine)}</p>
-    <p class="url">${plain(shortUrl(site.url))}</p>
-  </div>
+  <p class="name">${plain(site.name)}</p>
+  <p class="line">${text(t.meta.shareLine)}</p>
+  <p class="url">${plain(shortUrl(site.url))}</p>
 </body>
 </html>
 `;
