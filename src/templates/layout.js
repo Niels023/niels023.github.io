@@ -55,6 +55,7 @@ export function renderHead({
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="${securityPolicy(inlineScript)}">
+<script>${inlineScript}</script>
 <title>${plain(title)}</title>
 <meta name="description" content="${plain(description)}">
 <meta name="color-scheme" content="light dark">
@@ -66,7 +67,6 @@ export function renderHead({
 <link rel="manifest" href="/site.webmanifest">
 ${fontLinks.join('\n')}
 <link rel="stylesheet" href="/assets/site.css">
-<script>${inlineScript}</script>
 ${scripts.map((name) => `<script type="module" src="/assets/js/${name}.js"></script>`).join('\n')}`;
 }
 
