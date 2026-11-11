@@ -39,11 +39,11 @@ export function securityPolicy(inlineScript) {
 }
 
 // The part of <head> that every page shares. preload lists the fonts that
-// are needed for the first screen: 'text', 'head' or 'hand'.
+// are needed for the first screen, by their name in fonts.js.
 export function renderHead({
   title,
   description,
-  preload = ['text', 'hand'],
+  preload = ['text', 'textBold', 'hand'],
   inlineScript = themeScript,
   scripts = [],
 }) {
