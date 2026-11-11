@@ -69,6 +69,11 @@ npm run build
 
 The finished site ends up in `dist/`.
 
+## Publishing
+
+A push to `main` starts the workflow in `.github/workflows/deploy.yml`. It builds the site and
+publishes the `dist/` folder to GitHub Pages.
+
 ## Changing the text
 
 All text is in `content/`:
