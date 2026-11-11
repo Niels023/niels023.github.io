@@ -20,10 +20,7 @@
   .site-header,
   .site-footer,
   .skip-link,
-  .cv-actions,
-  .tray,
-  .hero__canvas,
-  .hero__hint {
+  .cv-actions {
     display: none;
   }
 

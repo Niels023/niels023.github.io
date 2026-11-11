@@ -123,7 +123,7 @@ function writePages(content, now) {
         title: t.meta.homeTitle,
         description: t.meta.homeDescription,
         main: renderHome({ site, t, lang, projects }),
-        scripts: ['board', 'sketches', 'copy'],
+        scripts: ['sketches', 'copy'],
       }),
     );
     writeFile(`${pagePath(lang, 'cv')}index.html`, renderCvPage(content, lang, now));

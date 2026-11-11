@@ -36,11 +36,6 @@ hero:
   facts: Student <en>Software Development</en> (MBO 4) uit Haarlem
   showProjects: Bekijk mijn projecten
   downloadCv: Download mijn cv (PDF)
-  board:
-    hint: Teken gerust mee
-    draw: Teken op het bord
-    color: Kleur
-    clear: Veeg het bord schoon
 
 projects:
   title: Projecten

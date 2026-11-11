@@ -14,8 +14,6 @@ function showTheme() {
   for (const meta of document.querySelectorAll('meta[name="theme-color"]')) {
     meta.content = pageColor;
   }
-
-  document.dispatchEvent(new Event('themechange'));
 }
 
 function switchTheme() {

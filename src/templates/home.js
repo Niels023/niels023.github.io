@@ -17,16 +17,9 @@ export function renderHome(page) {
 }
 
 function renderHero({ site, t, lang }) {
-  const board = t.hero.board;
-  const colors = [1, 2, 3, 4].map(
-    (number) =>
-      `<button class="tray__color tray__color--${number}" type="button" aria-pressed="${number === 1}" data-board-color="${number}"><span class="visually-hidden">${text(board.color)} ${number}</span></button>`,
-  );
-
   return `<section class="hero" id="top" aria-labelledby="hero-title">
   <div class="wrap">
-    <div class="board hero__board" data-board>
-      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="board hero__board">
       <div class="hero__text">
         <h1 class="hero__title" id="hero-title">
           ${text(t.hero.title)}
@@ -41,20 +34,6 @@ function renderHero({ site, t, lang }) {
           <a class="button button--outline" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(t.hero.downloadCv)}</a>
         </p>
       </div>
-      <p class="hero__hint" aria-hidden="true">
-        ${text(board.hint)}
-        <svg viewBox="0 0 60 44" focusable="false"><path d="M6 6 C22 4 40 12 46 36 M36 28 L46 37 L53 25"/></svg>
-      </p>
-    </div>
-    <div class="tray" data-board-tools>
-      <button class="tray__draw" type="button" aria-pressed="false" data-board-draw>
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.2-4.6L15.6 5a2.1 2.1 0 0 1 3 0l.4.4a2.1 2.1 0 0 1 0 3L8.6 18.8Z M13.8 6.8l3.4 3.4"/></svg>
-        ${text(board.draw)}
-      </button>
-      <div class="tray__colors" role="group" aria-label="${plain(board.color)}">
-        ${colors.join('\n        ')}
-      </div>
-      <button class="tray__clear" type="button" data-board-clear>${text(board.clear)}</button>
     </div>
   </div>
 </section>`;

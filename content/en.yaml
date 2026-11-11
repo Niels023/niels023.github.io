@@ -35,11 +35,6 @@ hero:
   facts: Software Development student (MBO level 4) from Haarlem, the Netherlands
   showProjects: See my projects
   downloadCv: Download my CV (PDF)
-  board:
-    hint: Feel free to draw
-    draw: Draw on the board
-    color: Colour
-    clear: Wipe the board
 
 projects:
   title: Projects
