@@ -1,0 +1,22 @@
+# A cv for one job application. Copy this file, name it after the company and
+# run: npm run cv -- name-of-your-file
+#
+# Only write down what has to be different from the normal cv. Everything in
+# this folder except this example stays out of git.
+
+# nl or en
+language: nl
+
+# The ids of the projects to show, in this order. Leave this out to keep the
+# projects of the normal cv.
+projects:
+  - claudot
+  - pc-bouwplanner
+
+# Texts that replace the ones in content/nl.yaml (or en.yaml when the
+# language is en). Use the same names and the same indentation.
+text:
+  cv:
+    profile: >-
+      Schrijf hier het profiel voor deze sollicitatie. Deze tekst vervangt het profiel van het
+      gewone cv.

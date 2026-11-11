@@ -1,2 +1,6 @@
 node_modules/
 dist/
+
+# Tailored cvs for job applications stay on this computer.
+cv-variants/*
+!cv-variants/example.yaml
