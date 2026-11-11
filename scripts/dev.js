@@ -1,11 +1,11 @@
+import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { build, distDir } from './build.js';
-import { ContentError } from './content.js';
 import { startServer } from './server.js';
 
 const root = path.join(import.meta.dirname, '..');
+const distDir = path.join(root, 'dist');
 const port = 3000;
 
 // Normally only this computer can open the preview. With npm start -- --host
@@ -15,19 +15,25 @@ const onNetwork = process.argv.includes('--host');
 let building = false;
 let changedWhileBuilding = false;
 
+// Every build runs as a new Node process, because Node reads a script only
+// once per process. Calling the build from here would keep using the
+// templates as they were when the preview started.
+function runBuild() {
+  return new Promise((resolve) => {
+    const buildScript = path.join(root, 'scripts', 'build.js');
+    spawn(process.execPath, [buildScript], { stdio: 'inherit' }).on('exit', resolve);
+  });
+}
+
 async function rebuild() {
   if (building) {
     changedWhileBuilding = true;
     return;
   }
 
+  // A build that fails prints its own message and the preview keeps running.
   building = true;
-  try {
-    await build();
-  } catch (error) {
-    // A typing mistake in a content file should not stop the preview.
-    console.error(error instanceof ContentError ? `\n${error.message}\n` : error);
-  }
+  await runBuild();
   building = false;
 
   if (changedWhileBuilding) {
