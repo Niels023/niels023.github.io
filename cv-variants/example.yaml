@@ -7,6 +7,10 @@
 # nl or en
 language: nl
 
+# Some employers ask for a cv without a photo. Take the # away from the next
+# line to leave the photo off this cv.
+# photo: false
+
 # The ids of the projects to show, in this order. Leave this out to keep the
 # projects of the normal cv.
 projects:

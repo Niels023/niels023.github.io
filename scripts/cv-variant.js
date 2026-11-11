@@ -57,9 +57,12 @@ async function makeVariant(name) {
     ? pickProjects(content.projects, variant.projects)
     : content.projects;
 
+  // photo: false leaves the photo off this one cv.
+  const site = variant.photo === false ? { ...content.site, photo: '' } : content.site;
+
   writeFile(
     `${temporaryFolder}/index.html`,
-    renderCvPage({ ...content, text, projects }, lang, new Date()),
+    renderCvPage({ ...content, site, text, projects }, lang, new Date()),
   );
 
   const pdfFile = path.join(variantsDir, `${name}.pdf`);
