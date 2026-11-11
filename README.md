@@ -6,8 +6,7 @@ The site is plain HTML, CSS and JavaScript, without a framework. A small Node sc
 from a few YAML files and writes the pages to `dist/`. The same build makes the cv as a PDF.
 
 - Dutch and English
-- A light theme (a whiteboard) and a dark theme (a chalkboard)
-- A board at the top of the page that you can draw on
+- A light and a dark theme
 - Also works with JavaScript turned off
 - The fonts are hosted on the site itself. No cookies and no analytics.
 
@@ -87,6 +86,21 @@ All text is in `content/`:
 The build warns when the Dutch and the English file do not have the same parts, and when a value
 still says `TODO`.
 
+## The photo and the screenshots
+
+Images go in `src/images/`. Their file names go in the content files:
+
+- The portrait photo: `photo` in `content/site.yaml`. Use a JPG, PNG or WebP file. A photo straight
+  from an iPhone is often a HEIC file, save that as JPG first.
+- A screenshot of a project: `image` of that project in `content/projects.yaml`.
+
+The build cuts the portrait to 4 wide by 5 high, saves it in two smaller sizes and puts it on the
+home page, on the cv, in the cv PDF and in the share image. The photo you put in `src/images/` is
+never published itself, only those smaller copies. They hold nothing but the picture, so not the
+place where the photo was taken either.
+
+While `photo` says `TODO` the site and the cv simply have no photo.
+
 ## A cv for one job application
 
 ```
@@ -94,8 +108,8 @@ npm run cv -- example
 ```
 
 This reads `cv-variants/example.yaml`, lays those texts over the normal cv and saves
-`cv-variants/example.pdf`. Copy the example to make your own. Everything in that folder except the
-example stays out of git.
+`cv-variants/example.pdf`. Copy the example to make your own. A variant can also leave the photo
+off. Everything in that folder except the example stays out of git.
 
 ## Code style
 
