@@ -44,6 +44,15 @@
     break-after: avoid;
   }
 
+  /*
+    With tighter letter spacing the gap between two words gets so small that
+    some programs that read a PDF see no space there: "NielsvanderPijl".
+  */
+  .cv__name,
+  .cv h2 {
+    letter-spacing: 0;
+  }
+
   .page-cv main {
     padding: 0;
   }
