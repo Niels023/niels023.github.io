@@ -3,7 +3,7 @@
 # featured  true gives the project a large card with a drawing, false a short row.
 # onCv      true also lists the project on the cv.
 # sketch    drawing from src/sketches that is shown until there is a screenshot.
-# image     file name of a screenshot in src/static/assets/images, TODO while there is none.
+# image     file name of a screenshot in src/images, TODO while there is none.
 # links     optional, each with a url and a label per language.
 # status, learned and note are optional texts.
 

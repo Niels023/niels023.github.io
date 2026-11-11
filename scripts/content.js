@@ -3,6 +3,10 @@ import path from 'node:path';
 import { parse } from 'yaml';
 
 const contentDir = path.join(import.meta.dirname, '..', 'content');
+const imagesDir = path.join(import.meta.dirname, '..', 'src', 'images');
+
+// The kinds of photo a browser can open. The HEIC of an iPhone is not one.
+const photoTypes = ['.jpg', '.jpeg', '.png', '.webp'];
 
 // Thrown for mistakes in the content files, so the build can show the
 // message without a stack trace.
@@ -30,6 +34,7 @@ export function loadContent() {
   for (const place of placeholders) {
     warnings.push(`placeholder left at ${place}`);
   }
+  checkImages(site, projects);
 
   return {
     warnings,
@@ -128,6 +133,28 @@ function checkProjects(projects, warnings) {
 
   if (problems.length > 0) {
     throw new ContentError(`projects.yaml is not complete.\n- ${problems.join('\n- ')}`);
+  }
+}
+
+// The photo and the screenshots that the content names have to be in src/images.
+function checkImages(site, projects) {
+  const named = [
+    ['site.yaml: photo', site.photo],
+    ...projects.map((project) => [`projects.yaml: ${project.id}.image`, project.image]),
+  ];
+
+  const problems = [];
+  for (const [where, file] of named) {
+    if (file && !fs.existsSync(path.join(imagesDir, file))) {
+      problems.push(`${where}: there is no file src/images/${file}`);
+    }
+  }
+  if (site.photo && !photoTypes.includes(path.extname(site.photo).toLowerCase())) {
+    problems.push('site.yaml: photo has to be a JPG, PNG or WebP file');
+  }
+
+  if (problems.length > 0) {
+    throw new ContentError(`An image is not right.\n- ${problems.join('\n- ')}`);
   }
 }
 

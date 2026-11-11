@@ -61,18 +61,25 @@ export function writeFile(relativePath, content) {
   fs.writeFileSync(filePath, content);
 }
 
-function copyAssets() {
+function copyFile(source, relativePath) {
+  const target = path.join(distDir, relativePath);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(source, target);
+}
+
+function copyAssets(projects) {
   for (const file of Object.values(fonts)) {
-    const target = path.join(distDir, 'assets', 'fonts', path.basename(file));
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.copyFileSync(path.join(root, 'node_modules', file), target);
+    copyFile(path.join(root, 'node_modules', file), `assets/fonts/${path.basename(file)}`);
   }
 
   fs.cpSync(path.join(srcDir, 'js'), path.join(distDir, 'assets', 'js'), { recursive: true });
 
-  const imagesDir = path.join(srcDir, 'images');
-  if (fs.existsSync(imagesDir)) {
-    fs.cpSync(imagesDir, path.join(distDir, 'assets', 'images'), { recursive: true });
+  // Only the screenshots that a project names are copied. The portrait photo
+  // is never copied as it is: render.js saves smaller copies of it.
+  for (const project of projects) {
+    if (project.image) {
+      copyFile(path.join(srcDir, 'images', project.image), `assets/images/${project.image}`);
+    }
   }
 }
 
@@ -132,7 +139,7 @@ export async function build() {
   }
 
   fs.rmSync(distDir, { recursive: true, force: true });
-  copyAssets();
+  copyAssets(content.projects);
   writeStylesheet();
   writeFile('favicon.svg', renderFavicon());
   writePages(content, now);
