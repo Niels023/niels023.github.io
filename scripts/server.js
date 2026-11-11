@@ -22,7 +22,14 @@ const contentTypes = {
 // redirects to /nl/ and an unknown address gives 404.html.
 export function startServer(folder, port = 0) {
   const server = http.createServer((request, response) => {
-    const urlPath = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    let urlPath;
+    try {
+      urlPath = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    } catch {
+      // An address with a broken % code. Without this the server would stop.
+      response.writeHead(400).end('Bad request');
+      return;
+    }
     let filePath = path.join(folder, urlPath);
 
     if (!filePath.startsWith(folder)) {
