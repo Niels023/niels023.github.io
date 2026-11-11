@@ -1,0 +1,85 @@
+/*
+  Print and the cv PDF. The dark theme only applies on screen, so paper is
+  always light. All sizes hang on the root font size, so one smaller value
+  scales the whole page down to fit A4.
+*/
+@page {
+  size: A4;
+  margin: 11mm 13mm;
+}
+
+@media print {
+  html {
+    font-size: 8.4pt;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .cv-actions,
+  .tray,
+  .hero__canvas,
+  .hero__hint {
+    display: none;
+  }
+
+  .wrap {
+    width: auto;
+  }
+
+  .section {
+    padding-block: 2rem;
+  }
+
+  .board,
+  .portrait {
+    box-shadow: none;
+  }
+
+  .project,
+  .small-project,
+  .bento,
+  .cv-entry {
+    break-inside: avoid;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  .page-cv main {
+    padding: 0;
+  }
+
+  .cv {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .cv__header {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .cv__columns {
+    grid-template-columns: 1.7fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .cv section + section {
+    margin-top: 1.6rem;
+  }
+
+  .cv__updated {
+    margin-top: 1.75rem;
+  }
+}

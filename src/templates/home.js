@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { escapeHtml, plain, sentenceList, text } from './html.js';
+import { escapeHtml, plain, sentenceList, shortUrl, text } from './html.js';
 import { renderMonogram } from './monogram.js';
 import { pagePath, pdfDownloadName, pdfPath } from './paths.js';
 
@@ -198,8 +198,6 @@ function renderAbout({ site, t, lang }) {
 }
 
 function renderContact({ site, t }) {
-  const shortUrl = (url) => url.replace('https://', '').replace('www.', '').replace(/\/$/, '');
-
   return `<section class="section" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
     <header class="section__header">

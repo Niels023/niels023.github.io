@@ -19,6 +19,11 @@ export function plain(value) {
   return escapeHtml(String(value).replaceAll(/<\/?(en|nl)>/g, ''));
 }
 
+// https://github.com/Niels023/ becomes github.com/Niels023
+export function shortUrl(url) {
+  return url.replace('https://', '').replace('www.', '').replace(/\/$/, '');
+}
+
 // "PHP, MySQL en Git" in Dutch, "PHP, MySQL and Git" in English.
 export function sentenceList(items, lang) {
   return new Intl.ListFormat(lang, { type: 'conjunction' }).format(items);

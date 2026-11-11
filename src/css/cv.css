@@ -1,0 +1,168 @@
+.page-cv main {
+  padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
+}
+
+.cv-actions,
+.cv {
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.cv-actions__back {
+  margin-right: auto;
+  padding-block: 0.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 29.99rem) {
+  .cv-actions__back {
+    width: 100%;
+  }
+}
+
+.print-button {
+  display: none;
+}
+
+.js .print-button {
+  display: inline-flex;
+}
+
+/* The cv is a sheet of paper lying on the page. */
+.cv {
+  padding: clamp(1.5rem, 1rem + 4vw, 3.5rem);
+  border: 1px solid var(--frame);
+  border-radius: 6px;
+  background: var(--board);
+  box-shadow: var(--shadow);
+}
+
+.cv__header {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.cv__name {
+  font-family: var(--font-hand);
+  font-size: clamp(2.25rem, 1.6rem + 3.2vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.cv__role {
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-size: var(--text-large);
+}
+
+.cv__contact {
+  display: grid;
+  gap: 0.15rem;
+  font-size: var(--text-small);
+  font-style: normal;
+}
+
+.cv a {
+  text-decoration-thickness: 1px;
+}
+
+.cv__contact a {
+  overflow-wrap: anywhere;
+}
+
+.cv__columns {
+  display: grid;
+  gap: 2rem 3rem;
+}
+
+.cv section + section {
+  margin-top: 2rem;
+}
+
+/* The line under a section title is the width of the title, like a marker stroke. */
+.cv h2 {
+  width: fit-content;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 3px solid var(--accent);
+  font-size: 1.25rem;
+}
+
+.cv-entry + .cv-entry {
+  margin-top: 1.25rem;
+}
+
+.cv-entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1rem;
+}
+
+.cv-entry h3 {
+  font-family: var(--font-text);
+  font-size: var(--text);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.cv-entry__period,
+.cv-entry__place,
+.cv-entry__note {
+  color: var(--ink-soft);
+}
+
+.cv-entry__period,
+.cv-entry__note {
+  font-size: var(--text-small);
+}
+
+/* Enough room on the left for the bullet, or print cuts it off at the margin. */
+.cv-entry ul {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.4rem;
+  padding-left: 1.3em;
+}
+
+.cv__skills dt {
+  font-weight: 700;
+}
+
+.cv__skills dd + dt {
+  margin-top: 0.75rem;
+}
+
+.cv__languages {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.cv__updated {
+  margin-top: 2.5rem;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+@media (min-width: 48rem) {
+  .cv__header {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .cv__columns {
+    grid-template-columns: 1.7fr 1fr;
+  }
+}
