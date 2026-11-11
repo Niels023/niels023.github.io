@@ -1,11 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ContentError, loadContent } from './content.js';
+import { makeBrowserFiles } from './render.js';
+import { startServer } from './server.js';
+import { renderCv } from '../src/templates/cv.js';
 import { faviconFrames, renderFavicon } from '../src/templates/favicon.js';
 import { fonts } from '../src/templates/fonts.js';
 import { renderHome } from '../src/templates/home.js';
 import { renderPage } from '../src/templates/layout.js';
 import { languages, pagePath } from '../src/templates/paths.js';
+import { renderManifest, renderRobots, renderSitemap } from '../src/templates/seo-files.js';
+import { renderLanguageChooser, renderNotFound } from '../src/templates/small-pages.js';
 
 const root = path.join(import.meta.dirname, '..');
 const srcDir = path.join(root, 'src');
@@ -22,16 +27,35 @@ const cssFiles = [
   'skills',
   'about',
   'contact',
+  'cv',
+  'small-pages',
+  'print',
 ];
 
 // The server of GitHub Actions runs in UTC, so dates name their time zone.
 const timeZone = 'Europe/Amsterdam';
+const locales = { nl: 'nl-NL', en: 'en-GB' };
 
 function yearOf(date) {
   return new Intl.DateTimeFormat('en-GB', { year: 'numeric', timeZone }).format(date);
 }
 
-function writeFile(relativePath, content) {
+// "november 2026" or "November 2026".
+function monthAndYear(date, lang) {
+  const format = new Intl.DateTimeFormat(locales[lang], {
+    month: 'long',
+    year: 'numeric',
+    timeZone,
+  });
+  return format.format(date);
+}
+
+// Swedish writes dates as 2026-11-10, the form a sitemap asks for.
+function dayOf(date) {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone }).format(date);
+}
+
+export function writeFile(relativePath, content) {
   const filePath = path.join(distDir, relativePath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, content);
@@ -52,6 +76,13 @@ function copyAssets() {
   }
 }
 
+function writeStylesheet() {
+  const css = cssFiles.map((name) =>
+    fs.readFileSync(path.join(srcDir, 'css', `${name}.css`), 'utf8'),
+  );
+  writeFile('assets/site.css', css.join('\n'));
+}
+
 // The finished icon plus the frames that show the N being written.
 function writeFavicons() {
   writeFile('favicon.svg', renderFavicon());
@@ -60,22 +91,34 @@ function writeFavicons() {
   }
 }
 
-function writeStylesheet() {
-  const css = cssFiles.map((name) =>
-    fs.readFileSync(path.join(srcDir, 'css', `${name}.css`), 'utf8'),
-  );
-  writeFile('assets/site.css', css.join('\n'));
+export function renderCvPage({ site, text, projects }, lang, now) {
+  const t = text[lang];
+  return renderPage({
+    site,
+    t,
+    lang,
+    year: yearOf(now),
+    page: 'cv',
+    title: t.meta.cvTitle,
+    description: t.meta.cvDescription,
+    main: renderCv({ site, t, lang, projects, updated: monthAndYear(now, lang) }),
+    preload: ['text', 'textBold', 'head', 'hand'],
+    scripts: ['print'],
+  });
 }
 
-function writePages({ site, text, projects }, now) {
+function writePages(content, now) {
+  const { site, text, projects } = content;
+
   for (const lang of languages) {
     const t = text[lang];
-    const shared = { site, t, lang, year: yearOf(now) };
-
     writeFile(
       `${pagePath(lang, 'home')}index.html`,
       renderPage({
-        ...shared,
+        site,
+        t,
+        lang,
+        year: yearOf(now),
         page: 'home',
         title: t.meta.homeTitle,
         description: t.meta.homeDescription,
@@ -83,7 +126,11 @@ function writePages({ site, text, projects }, now) {
         scripts: ['board', 'sketches', 'copy'],
       }),
     );
+    writeFile(`${pagePath(lang, 'cv')}index.html`, renderCvPage(content, lang, now));
   }
+
+  writeFile('index.html', renderLanguageChooser(content));
+  writeFile('404.html', renderNotFound(content));
 }
 
 export async function build() {
@@ -98,6 +145,17 @@ export async function build() {
   writeStylesheet();
   writeFavicons();
   writePages(content, now);
+  writeFile('sitemap.xml', renderSitemap(content.site, dayOf(now)));
+  writeFile('robots.txt', renderRobots(content.site));
+  writeFile('site.webmanifest', renderManifest(content.site));
+
+  // The PDFs and images are made from the pages above, so those are served first.
+  const server = await startServer(distDir);
+  try {
+    await makeBrowserFiles({ distDir, serverUrl: server.url, content });
+  } finally {
+    server.close();
+  }
 
   console.log(`Built the site in ${path.relative(root, distDir)}/`);
 }
