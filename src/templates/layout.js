@@ -7,6 +7,7 @@ import {
   pagePath,
   pdfDownloadName,
   pdfPath,
+  portraitPath,
   shareImagePath,
 } from './paths.js';
 
@@ -97,6 +98,8 @@ function renderPersonData(site) {
     address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: 'NL' },
     sameAs: [site.github, site.linkedin],
   };
+  if (site.photo) person.image = site.url + portraitPath(800);
+
   const json = JSON.stringify(person, null, 2).replaceAll('<', '\\u003c');
   return `<script type="application/ld+json">\n${json}\n</script>`;
 }

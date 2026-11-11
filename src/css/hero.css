@@ -35,3 +35,22 @@
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
+
+/* The photo stands above the text on a phone and next to it on a wide screen. */
+.hero__photo {
+  order: -1;
+  width: 8rem;
+  border-radius: var(--radius);
+}
+
+@media (min-width: 48rem) {
+  .hero__layout--photo {
+    grid-template-columns: 1fr clamp(15rem, 30vw, 22rem);
+  }
+
+  .hero__photo {
+    order: 0;
+    width: 100%;
+    border-radius: 16px;
+  }
+}

@@ -12,6 +12,7 @@ meta:
     skills and projects. Also available as a PDF.
   shareLine: Software Development student from Haarlem
   shareImageAlt: The name Niels van der Pijl in large letters, with below it that he studies Software Development
+  photoAlt: Photo of Niels van der Pijl
 
 a11y:
   skipLink: Skip to content
@@ -72,7 +73,6 @@ about:
   experience: Experience
   education: Education
   fullCv: Read my full CV
-  photoAlt: Photo of Niels van der Pijl
 
 contact:
   title: Contact

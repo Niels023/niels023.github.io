@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { escapeHtml, plain, sentenceList, shortUrl, text } from './html.js';
-import { pagePath, pdfDownloadName, pdfPath } from './paths.js';
+import { pagePath, pdfDownloadName, pdfPath, portraitPath } from './paths.js';
 
 const sketchDir = path.join(import.meta.dirname, '..', 'sketches');
 
@@ -16,8 +16,13 @@ export function renderHome(page) {
 }
 
 function renderHero({ site, t, lang }) {
+  // The browser picks the small or the large copy of the photo by itself.
+  const photo = site.photo
+    ? `<img class="hero__photo" src="${portraitPath(800)}" srcset="${portraitPath(400)} 400w, ${portraitPath(800)} 800w" sizes="(min-width: 48rem) 22rem, 8rem" alt="${plain(t.meta.photoAlt)}" width="800" height="1000">`
+    : '';
+
   return `<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap hero__layout">
+  <div class="wrap hero__layout${photo ? ' hero__layout--photo' : ''}">
     <div class="hero__text">
       <h1 class="hero__title" id="hero-title">${text(t.hero.title)}</h1>
       <p class="hero__intro">${text(t.hero.intro)}</p>
@@ -27,6 +32,7 @@ function renderHero({ site, t, lang }) {
         <a class="button button--outline" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(t.hero.downloadCv)}</a>
       </p>
     </div>
+    ${photo}
   </div>
 </section>`;
 }

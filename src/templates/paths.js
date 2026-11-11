@@ -22,3 +22,10 @@ export function pdfDownloadName(site, lang) {
 export function shareImagePath(lang) {
   return `/assets/images/share-${lang}.png`;
 }
+
+// The portrait photo is saved in these widths, always 4 wide by 5 high.
+export const portraitWidths = [400, 800];
+
+export function portraitPath(width) {
+  return `/assets/images/portrait-${width}.jpg`;
+}

@@ -62,6 +62,11 @@
   letter-spacing: -0.03em;
 }
 
+.cv__photo {
+  width: 7rem;
+  border-radius: 6px;
+}
+
 .cv__role {
   margin-top: 0.35rem;
   color: var(--ink-soft);
@@ -162,6 +167,10 @@
   .cv__header {
     grid-template-columns: 1fr auto;
     align-items: end;
+  }
+
+  .cv__header--photo {
+    grid-template-columns: auto 1fr auto;
   }
 
   .cv__columns {

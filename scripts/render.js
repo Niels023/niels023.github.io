@@ -3,16 +3,29 @@ import path from 'node:path';
 import { PDFDocument } from 'pdf-lib';
 import { chromium } from 'playwright';
 import { renderAppIcon, renderFavicon } from '../src/templates/favicon.js';
-import { languages, pagePath, pdfPath, shareImagePath } from '../src/templates/paths.js';
+import {
+  languages,
+  pagePath,
+  pdfPath,
+  portraitPath,
+  portraitWidths,
+  shareImagePath,
+} from '../src/templates/paths.js';
 import { renderShareImage } from '../src/templates/share-image.js';
 
-// Makes the files that need a real browser: the cv PDFs, the share images
-// and the icons. serverUrl is where the freshly built site is being served.
+const imagesDir = path.join(import.meta.dirname, '..', 'src', 'images');
+
+// Makes the files that need a real browser: the portrait, the cv PDFs, the
+// share images and the icons. serverUrl is where the freshly built site is
+// being served.
 export async function makeBrowserFiles({ distDir, serverUrl, content }) {
   const { site, text } = content;
   const browser = await chromium.launch();
 
   try {
+    // The cv and the share image show the portrait, so it is made first.
+    if (site.photo) await savePortraits(browser, distDir, site.photo);
+
     for (const lang of languages) {
       const pages = await savePdf(browser, {
         url: serverUrl + pagePath(lang, 'cv'),
@@ -32,6 +45,33 @@ export async function makeBrowserFiles({ distDir, serverUrl, content }) {
   } finally {
     await browser.close();
   }
+}
+
+// Saves the portrait in the sizes the pages use. The browser shows the photo
+// cut to 4 by 5 and a screenshot of that is saved. A screenshot holds nothing
+// but the picture, so what a phone stores inside a photo, like the place where
+// it was taken, never reaches the site.
+async function savePortraits(browser, distDir, photo) {
+  const page = await browser.newPage();
+  // This address does not exist. The browser asks for it and gets the file.
+  const address = 'http://portrait.test/photo';
+  await page.route(address, (route) => route.fulfill({ path: path.join(imagesDir, photo) }));
+
+  for (const width of portraitWidths) {
+    // When a photo is too high, the cut keeps the part above the middle,
+    // which is where a face usually is.
+    await page.setViewportSize({ width, height: width * 1.25 });
+    await page.setContent(
+      `<style>body { margin: 0 } img { display: block; width: 100vw; height: 100vh; object-fit: cover; object-position: 50% 25% }</style><img src="${address}">`,
+    );
+    await takeScreenshot(page, {
+      path: path.join(distDir, portraitPath(width)),
+      type: 'jpeg',
+      quality: 85,
+    });
+  }
+
+  await page.close();
 }
 
 // Prints a page to PDF the way the browser's own print dialog would: real

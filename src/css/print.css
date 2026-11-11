@@ -61,6 +61,10 @@
     padding-bottom: 1.25rem;
   }
 
+  .cv__header--photo {
+    grid-template-columns: auto 1fr auto;
+  }
+
   .cv__columns {
     grid-template-columns: 1.7fr 1fr;
     gap: 2.5rem;

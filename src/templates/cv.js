@@ -1,10 +1,13 @@
 import { escapeHtml, plain, sentenceList, shortUrl, text } from './html.js';
-import { pagePath, pdfDownloadName, pdfPath } from './paths.js';
+import { pagePath, pdfDownloadName, pdfPath, portraitPath } from './paths.js';
 
 // updated is the month and year the cv was built, already in the right language.
 export function renderCv({ site, t, lang, projects, updated }) {
   const cv = t.cv;
   const onCv = projects.filter((project) => project.onCv);
+  const photo = site.photo
+    ? `<img class="cv__photo" src="${portraitPath(400)}" alt="${plain(t.meta.photoAlt)}" width="400" height="500">`
+    : '';
 
   return `<div class="wrap">
   <p class="cv-actions">
@@ -13,7 +16,8 @@ export function renderCv({ site, t, lang, projects, updated }) {
     <a class="button button--small" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(cv.download)}</a>
   </p>
   <article class="cv">
-    <header class="cv__header">
+    <header class="cv__header${photo ? ' cv__header--photo' : ''}">
+      ${photo}
       <div>
         <h1 class="cv__name">${plain(site.name)}</h1>
         <p class="cv__role">${text(cv.role)}</p>
