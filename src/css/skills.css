@@ -1,4 +1,4 @@
-/* One board, divided into cells by lines like a table drawn on a whiteboard. */
+/* One panel, divided into cells by lines like a table. */
 .bento {
   display: grid;
   overflow: hidden;
@@ -6,7 +6,7 @@
 
 .bento__cell {
   padding: clamp(1.25rem, 0.8rem + 2vw, 2rem);
-  border-top: 2px solid var(--frame);
+  border-top: 1px solid var(--line);
 }
 
 .bento__cell:first-child {
@@ -16,8 +16,8 @@
 .bento__cell h3 {
   margin-bottom: 0.75rem;
   color: var(--ink-soft);
+  font-family: var(--font-text);
   font-size: var(--text);
-  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -29,20 +29,12 @@
   font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
   font-weight: 700;
   line-height: 1.25;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
 }
 
 .bento__list {
   display: grid;
   gap: 0.35rem;
-}
-
-/* What I am working on now is written on the board as a note. */
-.bento__cell--now h3 {
-  color: var(--accent);
-  font-family: var(--font-hand);
-  font-size: 1.125rem;
-  font-weight: 500;
 }
 
 .bento__cell--now p {
@@ -61,10 +53,10 @@
   .bento__cell--tools {
     grid-row: span 2;
     border-top: 0;
-    border-left: 2px solid var(--frame);
+    border-left: 1px solid var(--line);
   }
 
   .bento__cell--now {
-    border-left: 2px solid var(--frame);
+    border-left: 1px solid var(--line);
   }
 }

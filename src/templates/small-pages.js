@@ -39,7 +39,7 @@ ${languages.map((lang) => `<link rel="alternate" hreflang="${lang}" href="${site
 </head>
 <body>
 <main class="small-page">
-  <div class="board small-page__board">
+  <div class="panel small-page__panel">
     <h1 class="small-page__title">${plain(site.name)}</h1>
     <p class="small-page__actions">${links.join('\n    ')}</p>
   </div>
@@ -72,7 +72,7 @@ ${renderHead({
 </head>
 <body>
 <main class="small-page">
-  <div class="board small-page__board">
+  <div class="panel small-page__panel">
     <h1 class="small-page__title">404</h1>
     <div class="small-page__columns">
     ${blocks.join('\n    ')}

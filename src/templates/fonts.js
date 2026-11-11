@@ -8,7 +8,6 @@ export const fonts = {
   textBold:
     '@fontsource/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-700-normal.woff2',
   head: '@fontsource/instrument-sans/files/instrument-sans-latin-700-normal.woff2',
-  hand: '@fontsource/shantell-sans/files/shantell-sans-latin-500-normal.woff2',
 };
 
 export function fontUrl(name) {

@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import { faviconFrames } from './favicon.js';
-import { fontUrl } from './fonts.js';
+import { fonts, fontUrl } from './fonts.js';
 import { escapeHtml, plain, text } from './html.js';
 import {
   languages,
@@ -13,7 +13,7 @@ import {
 
 // The page colour of both themes, for the browser bar on phones.
 // Keep these the same as --page in src/css/tokens.css.
-const pageColors = { light: '#f1f3f2', dark: '#131b18' };
+const pageColors = { light: '#ffffff', dark: '#1b1e24' };
 
 // Runs before the page is drawn, so a saved theme is there from the first
 // frame and the page never flashes in the wrong colours.
@@ -38,16 +38,10 @@ export function securityPolicy(inlineScript) {
   ].join('; ');
 }
 
-// The part of <head> that every page shares. preload lists the fonts that
-// are needed for the first screen, by their name in fonts.js.
-export function renderHead({
-  title,
-  description,
-  preload = ['text', 'textBold', 'hand'],
-  inlineScript = themeScript,
-  scripts = [],
-}) {
-  const fontLinks = preload.map(
+// The part of <head> that every page shares.
+export function renderHead({ title, description, inlineScript = themeScript, scripts = [] }) {
+  // Every page shows all three fonts on its first screen, so they load early.
+  const fontLinks = Object.keys(fonts).map(
     (name) =>
       `<link rel="preload" href="${fontUrl(name)}" as="font" type="font/woff2" crossorigin>`,
   );
@@ -159,40 +153,20 @@ function renderFooter({ site, t, year }) {
 </footer>`;
 }
 
-// Sketches get their hand-drawn wobble from this filter.
-const markerFilter = `<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
-  <filter id="marker" x="-5%" y="-5%" width="110%" height="110%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4"/>
-  </filter>
-</svg>`;
-
-export function renderPage({
-  site,
-  t,
-  lang,
-  page,
-  title,
-  description,
-  year,
-  main,
-  preload,
-  scripts,
-}) {
+export function renderPage({ site, t, lang, page, title, description, year, main, scripts }) {
   const sharedScripts = ['theme', 'menu', 'language', 'favicon', 'hello'];
   const hello = `data-hello="${plain(t.console.hello)} ${escapeHtml(site.sourceCode)}"`;
 
   return `<!doctype html>
 <html lang="${lang}" class="no-js" ${hello}>
 <head>
-${renderHead({ title, description, preload, scripts: [...sharedScripts, ...scripts] })}
+${renderHead({ title, description, scripts: [...sharedScripts, ...scripts] })}
 ${renderSeo({ site, t, lang, page, title, description })}
 ${page === 'home' ? renderPersonData(site) : ''}
 </head>
 <body class="page-${page}">
 <a class="skip-link" href="#main">${text(t.a11y.skipLink)}</a>
 ${renderHeader({ site, t, lang, page })}
-${markerFilter}
 <main id="main">
 ${main}
 </main>

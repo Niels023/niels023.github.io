@@ -1,13 +1,11 @@
 .hero {
-  padding-top: clamp(1rem, 3vw, 2.5rem);
+  padding-block: clamp(2.5rem, 1.5rem + 6vw, 6.5rem) clamp(1rem, 3vw, 2.5rem);
 }
 
-.hero__board {
+.hero__layout {
   display: grid;
-  align-content: center;
-  min-height: clamp(27rem, 70vh, 38rem);
-  padding: clamp(1.5rem, 6vw, 4.5rem);
-  overflow: hidden;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
 }
 
 .hero__text {
@@ -17,35 +15,9 @@
 }
 
 .hero__title {
-  position: relative;
-  padding-bottom: 0.22em;
-  font-family: var(--font-hand);
-  font-size: clamp(2.75rem, 1.5rem + 6.5vw, 6rem);
-  font-weight: 500;
-  line-height: 1.05;
-}
-
-.hero__underline {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  overflow: visible;
-}
-
-.hero__underline path {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  animation: draw-line 0.7s 0.4s ease-out backwards;
-}
-
-@keyframes draw-line {
-  from {
-    stroke-dashoffset: 1;
-  }
+  font-size: var(--title-1);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
 .hero__intro {
@@ -62,10 +34,4 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__underline path {
-    animation: none;
-  }
 }

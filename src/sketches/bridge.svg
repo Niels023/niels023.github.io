@@ -1,14 +1,12 @@
 <svg class="sketch" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-  <g filter="url(#marker)">
-    <rect x="20" y="64" width="100" height="60" rx="8"/>
-    <rect x="200" y="64" width="100" height="60" rx="8"/>
-    <path class="accent" d="M124 94h72M136 85l-12 9 12 9M184 85l12 9-12 9"/>
-    <circle class="ok" cx="160" cy="46" r="15"/>
-    <path class="ok" d="M152 46l6 6 10-12"/>
-    <ellipse cx="160" cy="156" rx="10" ry="13"/>
-    <path d="M150 149l-9-6M150 156h-11M150 163l-9 6M170 149l9-6M170 156h11M170 163l9 6"/>
-    <path class="note" d="M138 178l44-44"/>
-  </g>
+  <rect x="20" y="64" width="100" height="60" rx="8"/>
+  <rect x="200" y="64" width="100" height="60" rx="8"/>
+  <path class="accent" d="M124 94h72M136 85l-12 9 12 9M184 85l12 9-12 9"/>
+  <circle class="accent" cx="160" cy="46" r="15"/>
+  <path class="accent" d="M152 46l6 6 10-12"/>
+  <ellipse cx="160" cy="156" rx="10" ry="13"/>
+  <path d="M150 149l-9-6M150 156h-11M150 163l-9 6M170 149l9-6M170 156h11M170 163l9 6"/>
+  <path d="M138 178l44-44"/>
   <text x="70" y="100" text-anchor="middle">Godot</text>
   <text x="250" y="100" text-anchor="middle">bridge</text>
 </svg>

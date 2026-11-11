@@ -1,3 +1,8 @@
+/* The cv is a white sheet of paper on a grey page. */
+.page-cv {
+  background: var(--surface);
+}
+
 .page-cv main {
   padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
 }
@@ -36,13 +41,11 @@
   display: inline-flex;
 }
 
-/* The cv is a sheet of paper lying on the page. */
 .cv {
   padding: clamp(1.5rem, 1rem + 4vw, 3.5rem);
-  border: 1px solid var(--frame);
+  border: 1px solid var(--line);
   border-radius: 6px;
-  background: var(--board);
-  box-shadow: var(--shadow);
+  background: var(--page);
 }
 
 .cv__header {
@@ -54,10 +57,9 @@
 }
 
 .cv__name {
-  font-family: var(--font-hand);
-  font-size: clamp(2.25rem, 1.6rem + 3.2vw, 3.25rem);
-  font-weight: 500;
+  font-size: clamp(2rem, 1.5rem + 2.6vw, 2.75rem);
   line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
 .cv__role {
@@ -90,13 +92,14 @@
   margin-top: 2rem;
 }
 
-/* The line under a section title is the width of the title, like a marker stroke. */
+/* The line under a section title is as wide as the title. */
 .cv h2 {
   width: fit-content;
   margin-bottom: 0.85rem;
   padding-bottom: 0.2rem;
   border-bottom: 3px solid var(--accent);
   font-size: 1.25rem;
+  letter-spacing: -0.015em;
 }
 
 .cv-entry + .cv-entry {
@@ -114,7 +117,6 @@
 .cv-entry h3 {
   font-family: var(--font-text);
   font-size: var(--text);
-  font-weight: 700;
   letter-spacing: 0;
 }
 

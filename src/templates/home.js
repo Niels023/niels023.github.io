@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { escapeHtml, plain, sentenceList, shortUrl, text } from './html.js';
-import { renderMonogram } from './monogram.js';
 import { pagePath, pdfDownloadName, pdfPath } from './paths.js';
 
 const sketchDir = path.join(import.meta.dirname, '..', 'sketches');
@@ -18,22 +17,15 @@ export function renderHome(page) {
 
 function renderHero({ site, t, lang }) {
   return `<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap">
-    <div class="board hero__board">
-      <div class="hero__text">
-        <h1 class="hero__title" id="hero-title">
-          ${text(t.hero.title)}
-          <svg class="hero__underline" viewBox="0 0 300 18" aria-hidden="true" focusable="false">
-            <path pathLength="1" d="M3 11 C40 5 85 15 130 9 S215 5 297 10"/>
-          </svg>
-        </h1>
-        <p class="hero__intro">${text(t.hero.intro)}</p>
-        <p class="hero__facts">${text(t.hero.facts)}</p>
-        <p class="hero__actions">
-          <a class="button" href="#projects">${text(t.hero.showProjects)}</a>
-          <a class="button button--outline" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(t.hero.downloadCv)}</a>
-        </p>
-      </div>
+  <div class="wrap hero__layout">
+    <div class="hero__text">
+      <h1 class="hero__title" id="hero-title">${text(t.hero.title)}</h1>
+      <p class="hero__intro">${text(t.hero.intro)}</p>
+      <p class="hero__facts">${text(t.hero.facts)}</p>
+      <p class="hero__actions">
+        <a class="button" href="#projects">${text(t.hero.showProjects)}</a>
+        <a class="button button--outline" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(t.hero.downloadCv)}</a>
+      </p>
     </div>
   </div>
 </section>`;
@@ -63,7 +55,7 @@ function renderProjects({ t, lang, projects }) {
 function renderProject({ t, lang, project }) {
   const p = project[lang];
   return `<article class="project">
-  <div class="board project__picture">
+  <div class="panel project__picture">
     ${renderPicture({ t, lang, project })}
     ${p.status ? `<p class="project__status">${text(p.status)}</p>` : ''}
   </div>
@@ -79,7 +71,7 @@ function renderProject({ t, lang, project }) {
 function renderSmallProject({ t, lang, project }) {
   const p = project[lang];
   return `<article class="small-project">
-  <div class="board small-project__picture">${renderPicture({ t, lang, project })}</div>
+  <div class="panel small-project__picture">${renderPicture({ t, lang, project })}</div>
   <div>
     <h4 class="small-project__title">${text(p.title)}</h4>
     <p>${text(p.summary)}</p>
@@ -117,7 +109,7 @@ function renderSkills({ site, t }) {
     <header class="section__header">
       <h2 id="skills-title">${text(t.skills.title)}</h2>
     </header>
-    <div class="board bento">
+    <div class="panel bento">
       <div class="bento__cell bento__cell--code">
         <h3>${text(t.skills.code)}</h3>
         <ul class="bento__words" role="list">${words(site.skills.code)}</ul>
@@ -139,7 +131,7 @@ function renderSkills({ site, t }) {
 </section>`;
 }
 
-function renderAbout({ site, t, lang }) {
+function renderAbout({ t, lang }) {
   const history = (items) =>
     items
       .map(
@@ -150,13 +142,9 @@ function renderAbout({ site, t, lang }) {
         </li>`,
       )
       .join('\n');
-  const portrait = site.photo
-    ? `<img src="/assets/images/${escapeHtml(site.photo)}" alt="${plain(t.about.photoAlt)}" width="480" height="600" loading="lazy">`
-    : renderMonogram('portrait__monogram');
 
   return `<section class="section" id="about" aria-labelledby="about-title">
   <div class="wrap about">
-    <div class="portrait">${portrait}</div>
     <div class="about__text">
       <h2 id="about-title">${text(t.about.title)}</h2>
       ${t.about.paragraphs.map((paragraph) => `<p>${text(paragraph)}</p>`).join('\n      ')}

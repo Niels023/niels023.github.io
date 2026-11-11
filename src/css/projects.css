@@ -1,24 +1,24 @@
 .projects {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 3rem);
 }
 
 .project {
   display: grid;
-  grid-column: span 12;
   align-content: start;
   gap: 0.75rem;
 }
 
-/* The extra room at the top is for the handwritten status. */
+/* The picture of a project: a screenshot or, until there is one, a drawing. */
 .project__picture {
+  position: relative;
   display: grid;
   place-items: center;
-  height: clamp(13rem, 10rem + 12vw, 18rem);
+  aspect-ratio: 16 / 10;
   margin-bottom: 0.5rem;
-  padding: 2.25rem 1rem 1rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   overflow: hidden;
+  background: var(--surface);
 }
 
 .project__picture img,
@@ -36,7 +36,7 @@
   height: 100%;
   fill: none;
   stroke: var(--ink);
-  stroke-width: 3;
+  stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -45,65 +45,37 @@
   stroke: var(--accent);
 }
 
-.sketch .ok {
-  stroke: var(--ok);
-}
-
-.sketch .note {
-  stroke: var(--note);
-}
-
+/* A shape that lies on top of another one hides what is behind it. */
 .sketch .solid {
-  fill: var(--board);
+  fill: var(--surface);
 }
 
 .sketch text {
   fill: var(--ink);
   stroke: none;
-  font-family: var(--font-hand);
-  font-size: 17px;
-  font-weight: 500;
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .sketch text.accent {
   fill: var(--accent);
 }
 
-/* sketches.js adds these two classes to let a drawing draw itself. */
-.sketch.will-draw :is(path, rect, circle, ellipse) {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-
-.sketch.will-draw text {
-  opacity: 0;
-}
-
-.sketch.is-drawn :is(path, rect, circle, ellipse) {
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.9s ease-in-out;
-}
-
-.sketch.is-drawn text {
-  opacity: 1;
-  transition: opacity 0.4s 0.8s;
-}
-
 .project__status {
   position: absolute;
-  top: 0.6rem;
-  right: 1rem;
-  color: var(--note);
-  font-family: var(--font-hand);
-  font-weight: 500;
-  transform: rotate(2deg);
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--page);
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
 
 .project__learned strong {
   margin-right: 0.25rem;
-  color: var(--accent);
-  font-family: var(--font-hand);
-  font-weight: 500;
 }
 
 .project__tech {
@@ -145,10 +117,11 @@
 }
 
 .small-project__picture {
+  position: relative;
   height: 4.5rem;
   padding: 0.4rem;
   overflow: hidden;
-  box-shadow: none;
+  background: var(--surface);
 }
 
 .small-project .sketch {
@@ -165,24 +138,8 @@
 }
 
 @media (min-width: 44rem) {
-  .project {
-    grid-column: span 6;
-  }
-
+  .projects,
   .smaller-projects {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* On wide screens the cards alternate between wide and narrow. */
-@media (min-width: 62rem) {
-  .project:nth-child(4n + 1),
-  .project:nth-child(4n) {
-    grid-column: span 7;
-  }
-
-  .project:nth-child(4n + 2),
-  .project:nth-child(4n + 3) {
-    grid-column: span 5;
   }
 }

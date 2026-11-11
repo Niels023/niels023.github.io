@@ -1,10 +1,8 @@
 <svg class="sketch" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-  <g filter="url(#marker)">
-    <circle class="ok" cx="64" cy="100" r="38"/>
-    <path class="ok" d="M50 90v6M78 90v6M46 110c10 14 26 14 36 0"/>
-    <circle cx="160" cy="100" r="38"/>
-    <path d="M146 90v6M174 90v6M144 114h32"/>
-    <circle class="note" cx="256" cy="100" r="38"/>
-    <path class="note" d="M242 90v6M270 90v6M238 120c10-14 26-14 36 0"/>
-  </g>
+  <circle class="accent" cx="64" cy="100" r="38"/>
+  <path class="accent" d="M50 90v6M78 90v6M46 110c10 14 26 14 36 0"/>
+  <circle cx="160" cy="100" r="38"/>
+  <path d="M146 90v6M174 90v6M144 114h32"/>
+  <circle cx="256" cy="100" r="38"/>
+  <path d="M242 90v6M270 90v6M238 120c10-14 26-14 36 0"/>
 </svg>

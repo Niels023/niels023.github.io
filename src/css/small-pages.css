@@ -1,4 +1,4 @@
-/* The language chooser at / and the 404 page: one board in the middle. */
+/* The language chooser at / and the 404 page: one panel in the middle. */
 .small-page {
   display: grid;
   place-items: center;
@@ -7,18 +7,18 @@
   padding: var(--gutter);
 }
 
-.small-page__board {
+.small-page__panel {
   display: grid;
   gap: 1.75rem;
   width: min(100%, 46rem);
   padding: clamp(1.5rem, 1rem + 5vw, 3.5rem);
+  background: var(--surface);
 }
 
 .small-page__title {
-  font-family: var(--font-hand);
   font-size: clamp(2.5rem, 1.5rem + 6vw, 4.5rem);
-  font-weight: 500;
   line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 
 .small-page__actions {
@@ -41,6 +41,7 @@
 .small-page__columns h2 {
   margin-bottom: 0.5rem;
   font-size: var(--title-3);
+  letter-spacing: -0.015em;
 }
 
 .small-page__columns p + p {

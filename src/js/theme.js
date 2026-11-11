@@ -27,14 +27,7 @@ function switchTheme() {
   showTheme();
 }
 
-button.addEventListener('click', () => {
-  const wantsCalm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (document.startViewTransition && !wantsCalm) {
-    document.startViewTransition(switchTheme);
-  } else {
-    switchTheme();
-  }
-});
+button.addEventListener('click', switchTheme);
 
 systemDark.addEventListener('change', showTheme);
 showTheme();

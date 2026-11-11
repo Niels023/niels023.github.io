@@ -39,6 +39,7 @@ ol[role='list'] {
   list-style: none;
 }
 
+h1,
 h2,
 h3,
 h4 {
@@ -51,6 +52,7 @@ h4 {
 
 h2 {
   font-size: var(--title-2);
+  letter-spacing: -0.025em;
 }
 
 h3 {
@@ -62,8 +64,7 @@ p {
 }
 
 img,
-svg,
-canvas {
+svg {
   display: block;
   max-width: 100%;
 }
@@ -103,10 +104,6 @@ a:hover {
   white-space: nowrap;
 }
 
-.defs {
-  position: absolute;
-}
-
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -115,13 +112,13 @@ a:hover {
   padding: 0.6rem 1rem;
   border-radius: 8px;
   background: var(--ink);
-  color: var(--board);
+  color: var(--page);
   font-weight: 700;
 }
 
 .skip-link:focus {
   top: 0.75rem;
-  color: var(--board);
+  color: var(--page);
 }
 
 .section {
@@ -140,13 +137,10 @@ a:hover {
   font-size: var(--text-large);
 }
 
-/* A board is the white (or green) surface with a frame around it. */
-.board {
-  position: relative;
-  border: 2px solid var(--frame);
+/* A panel is a block with a thin line around it. */
+.panel {
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--board);
-  box-shadow: var(--shadow);
 }
 
 .button {
@@ -156,10 +150,10 @@ a:hover {
   gap: 0.5rem;
   min-height: 2.75rem;
   padding: 0.5rem 1.15rem;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--accent);
   border-radius: 8px;
-  background: var(--ink);
-  color: var(--board);
+  background: var(--accent);
+  color: var(--on-accent);
   font: inherit;
   font-weight: 700;
   line-height: 1.2;
@@ -168,14 +162,21 @@ a:hover {
 }
 
 .button:hover {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
   color: var(--on-accent);
 }
 
 .button--outline {
+  border-color: var(--ink);
   background: transparent;
   color: var(--ink);
+}
+
+.button--outline:hover {
+  border-color: var(--accent);
+  background: transparent;
+  color: var(--accent);
 }
 
 .button--small {

@@ -32,11 +32,6 @@
     padding-block: 2rem;
   }
 
-  .board,
-  .portrait {
-    box-shadow: none;
-  }
-
   .project,
   .small-project,
   .bento,
@@ -57,7 +52,6 @@
     max-width: none;
     padding: 0;
     border: 0;
-    box-shadow: none;
   }
 
   .cv__header {

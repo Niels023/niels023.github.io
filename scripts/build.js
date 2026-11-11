@@ -102,7 +102,6 @@ export function renderCvPage({ site, text, projects }, lang, now) {
     title: t.meta.cvTitle,
     description: t.meta.cvDescription,
     main: renderCv({ site, t, lang, projects, updated: monthAndYear(now, lang) }),
-    preload: ['text', 'textBold', 'head', 'hand'],
     scripts: ['print'],
   });
 }
@@ -123,7 +122,7 @@ function writePages(content, now) {
         title: t.meta.homeTitle,
         description: t.meta.homeDescription,
         main: renderHome({ site, t, lang, projects }),
-        scripts: ['sketches', 'copy'],
+        scripts: ['copy'],
       }),
     );
     writeFile(`${pagePath(lang, 'cv')}index.html`, renderCvPage(content, lang, now));

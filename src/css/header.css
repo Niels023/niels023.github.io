@@ -16,9 +16,10 @@
 /* The name follows the width of a phone, so it always fits next to the buttons. */
 .site-name {
   margin-right: auto;
-  font-family: var(--font-hand);
-  font-size: clamp(0.9375rem, 4.5vw, 1.25rem);
-  font-weight: 500;
+  font-family: var(--font-head);
+  font-size: clamp(0.9375rem, 4.4vw, 1.1875rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -53,7 +54,7 @@
 .language-switch {
   display: flex;
   overflow: hidden;
-  border: 2px solid var(--frame);
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 
@@ -73,7 +74,7 @@
 
 .language-switch a[aria-current] {
   background: var(--ink);
-  color: var(--board);
+  color: var(--page);
 }
 
 /* Both buttons need JavaScript, so they only show when it runs. */
@@ -119,7 +120,7 @@
     right: 0;
     display: block;
     padding: 0.5rem var(--gutter) 1.5rem;
-    border-bottom: 2px solid var(--frame);
+    border-bottom: 1px solid var(--line);
     background: var(--page);
   }
 
