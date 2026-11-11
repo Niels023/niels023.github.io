@@ -1,3 +1,4 @@
+import { blue } from './favicon.js';
 import { languages, pagePath } from './paths.js';
 
 // day is the build date as 2026-11-10.
@@ -38,8 +39,8 @@ export function renderManifest(site) {
     short_name: site.name.split(' ')[0],
     start_url: '/',
     display: 'browser',
-    background_color: '#f1f3f2',
-    theme_color: '#1d2b25',
+    background_color: '#ffffff',
+    theme_color: blue,
     icons: [
       { src: '/assets/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
       { src: '/assets/icons/icon-512.png', sizes: '512x512', type: 'image/png' },

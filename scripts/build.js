@@ -4,7 +4,7 @@ import { ContentError, loadContent } from './content.js';
 import { makeBrowserFiles } from './render.js';
 import { startServer } from './server.js';
 import { renderCv } from '../src/templates/cv.js';
-import { faviconFrames, renderFavicon } from '../src/templates/favicon.js';
+import { renderFavicon } from '../src/templates/favicon.js';
 import { fonts } from '../src/templates/fonts.js';
 import { renderHome } from '../src/templates/home.js';
 import { renderPage } from '../src/templates/layout.js';
@@ -83,14 +83,6 @@ function writeStylesheet() {
   writeFile('assets/site.css', css.join('\n'));
 }
 
-// The finished icon plus the frames that show the N being written.
-function writeFavicons() {
-  writeFile('favicon.svg', renderFavicon());
-  for (let frame = 0; frame < faviconFrames; frame++) {
-    writeFile(`assets/favicon/frame-${frame + 1}.svg`, renderFavicon(frame / faviconFrames));
-  }
-}
-
 export function renderCvPage({ site, text, projects }, lang, now) {
   const t = text[lang];
   return renderPage({
@@ -142,7 +134,7 @@ export async function build() {
   fs.rmSync(distDir, { recursive: true, force: true });
   copyAssets();
   writeStylesheet();
-  writeFavicons();
+  writeFile('favicon.svg', renderFavicon());
   writePages(content, now);
   writeFile('sitemap.xml', renderSitemap(content.site, dayOf(now)));
   writeFile('robots.txt', renderRobots(content.site));

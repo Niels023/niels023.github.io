@@ -1,5 +1,4 @@
 import crypto from 'node:crypto';
-import { faviconFrames } from './favicon.js';
 import { fonts, fontUrl } from './fonts.js';
 import { escapeHtml, plain, text } from './html.js';
 import {
@@ -56,7 +55,7 @@ export function renderHead({ title, description, inlineScript = themeScript, scr
 <meta name="theme-color" content="${pageColors.light}" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="${pageColors.dark}" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" data-frames="${faviconFrames}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 ${fontLinks.join('\n')}
@@ -154,7 +153,7 @@ function renderFooter({ site, t, year }) {
 }
 
 export function renderPage({ site, t, lang, page, title, description, year, main, scripts }) {
-  const sharedScripts = ['theme', 'menu', 'language', 'favicon', 'hello'];
+  const sharedScripts = ['theme', 'menu', 'language', 'hello'];
   const hello = `data-hello="${plain(t.console.hello)} ${escapeHtml(site.sourceCode)}"`;
 
   return `<!doctype html>
