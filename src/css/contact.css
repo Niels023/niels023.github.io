@@ -13,12 +13,13 @@
   overflow-wrap: anywhere;
 }
 
+/* copy.js shows the button when the browser is able to copy. */
 .copy-button {
   display: none;
   letter-spacing: 0;
 }
 
-.js .copy-button {
+.copy-button.can-copy {
   display: inline-flex;
 }
 
