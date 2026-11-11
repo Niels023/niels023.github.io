@@ -32,6 +32,35 @@ npm start
 This builds the site and serves it on http://localhost:3000. When you change a file in `content/`
 or `src/`, the site is built again. Refresh the page to see the change.
 
+### On another device
+
+To open the preview on a phone or on another computer in the same network, start it like this:
+
+```
+npm start -- --host
+```
+
+The terminal then also shows the address for other devices, for example
+`http://192.168.2.123:3000`. Type that address in the browser on the other device. Without `--host`
+only the computer that runs the preview can open it.
+
+Does the page not load on the other device? Then the firewall of the computer that runs the
+preview is the usual cause. On Windows the network has to be set to private, and port 3000 has to
+be allowed on private networks. Run this once in PowerShell as administrator:
+
+```
+Get-NetConnectionProfile
+Set-NetConnectionProfile -InterfaceAlias "WiFi" -NetworkCategory Private
+New-NetFirewallRule -DisplayName "Site preview (port 3000)" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3000 -Profile Private -RemoteAddress LocalSubnet
+```
+
+The first command shows the name to use after `-InterfaceAlias`. Only set a network to private
+when it is your own, like the one at home. The rule only counts on private networks and only for
+devices in the same network, so on a public network the preview stays closed.
+
+The button that copies my email address is hidden when you open the site this way. Browsers only
+allow copying on https and on localhost.
+
 ## Build
 
 ```

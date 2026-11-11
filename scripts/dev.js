@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { build, distDir } from './build.js';
 import { ContentError } from './content.js';
@@ -6,6 +7,10 @@ import { startServer } from './server.js';
 
 const root = path.join(import.meta.dirname, '..');
 const port = 3000;
+
+// Normally only this computer can open the preview. With npm start -- --host
+// other devices on the same network can open it too.
+const onNetwork = process.argv.includes('--host');
 
 let building = false;
 let changedWhileBuilding = false;
@@ -31,9 +36,22 @@ async function rebuild() {
   }
 }
 
+// The addresses other devices reach this computer on, such as 192.168.2.123.
+function networkAddresses() {
+  return Object.values(os.networkInterfaces())
+    .flat()
+    .filter((address) => address.family === 'IPv4' && !address.internal)
+    .map((address) => address.address);
+}
+
 await rebuild();
-const server = await startServer(distDir, port);
+const server = await startServer(distDir, port, onNetwork ? '0.0.0.0' : '127.0.0.1');
 console.log(`\nPreview on ${server.url}`);
+if (onNetwork) {
+  for (const address of networkAddresses()) {
+    console.log(`On your network: http://${address}:${port}`);
+  }
+}
 console.log('Watching content/ and src/ for changes. Press Ctrl+C to stop.');
 
 // Saving one file can fire several events, so wait a moment and build once.

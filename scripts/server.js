@@ -20,7 +20,10 @@ const contentTypes = {
 
 // Serves a folder the way GitHub Pages does: /nl/ gives nl/index.html, /nl
 // redirects to /nl/ and an unknown address gives 404.html.
-export function startServer(folder, port = 0) {
+//
+// host is the address to listen on. With 127.0.0.1 only this computer can
+// open the site, with 0.0.0.0 other devices on the same network can too.
+export function startServer(folder, port = 0, host = '127.0.0.1') {
   const server = http.createServer((request, response) => {
     let urlPath;
     try {
@@ -55,7 +58,7 @@ export function startServer(folder, port = 0) {
   });
 
   return new Promise((resolve) => {
-    server.listen(port, '127.0.0.1', () => {
+    server.listen(port, host, () => {
       resolve({ url: `http://localhost:${server.address().port}`, close: () => server.close() });
     });
   });
