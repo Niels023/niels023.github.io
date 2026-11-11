@@ -29,3 +29,13 @@ export function renderFavicon(progress = 1) {
 </svg>
 `;
 }
+
+// The icon for a phone's home screen: the chalkboard without rounded corners
+// (phones cut their own shape out of it) and the N a little smaller.
+export function renderAppIcon() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#1d2b25"/>
+  <path d="${monogramPath}" transform="translate(8 8) scale(0.75)" fill="none" stroke="#f2d45c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+}
