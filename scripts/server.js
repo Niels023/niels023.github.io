@@ -45,16 +45,16 @@ export function startServer(folder, port = 0, host = '127.0.0.1') {
     }
     if (urlPath.endsWith('/')) filePath = path.join(filePath, 'index.html');
 
-    const found = fs.existsSync(filePath) && !isFolder(filePath);
-    if (!found) filePath = path.join(folder, '404.html');
-    if (!fs.existsSync(filePath)) {
-      response.writeHead(404).end('Not found');
-      return;
+    let status = 200;
+    let content = readFile(filePath);
+    if (content === undefined) {
+      status = 404;
+      filePath = path.join(folder, '404.html');
+      content = readFile(filePath) ?? 'Not found';
     }
 
     const contentType = contentTypes[path.extname(filePath)] ?? 'application/octet-stream';
-    response.writeHead(found ? 200 : 404, { 'Content-Type': contentType });
-    fs.createReadStream(filePath).pipe(response);
+    response.writeHead(status, { 'Content-Type': contentType }).end(content);
   });
 
   return new Promise((resolve) => {
@@ -64,6 +64,22 @@ export function startServer(folder, port = 0, host = '127.0.0.1') {
   });
 }
 
+// A rebuild empties the folder while the preview keeps serving it, so a file
+// can be gone the moment after it was found. Asking first whether it exists
+// is no use then. The file is simply read, and a file that cannot be read
+// counts as not there.
+function readFile(filePath) {
+  try {
+    return fs.readFileSync(filePath);
+  } catch {
+    return undefined;
+  }
+}
+
 function isFolder(filePath) {
-  return fs.existsSync(filePath) && fs.statSync(filePath).isDirectory();
+  try {
+    return fs.statSync(filePath).isDirectory();
+  } catch {
+    return false;
+  }
 }
