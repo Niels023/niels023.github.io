@@ -9,16 +9,18 @@ export function escapeHtml(value) {
 }
 
 // Content files mark a term in another language as <en>...</en> or
-// <nl>...</nl>. On the page that becomes a span with a lang attribute.
+// <nl>...</nl>, and words that have to stay on one line as <keep>...</keep>.
+// On the page each of them becomes a span.
 export function text(value) {
   return escapeHtml(value)
     .replaceAll(/&lt;(en|nl)&gt;/g, '<span lang="$1">')
-    .replaceAll(/&lt;\/(en|nl)&gt;/g, '</span>');
+    .replaceAll('&lt;keep&gt;', '<span class="keep">')
+    .replaceAll(/&lt;\/(en|nl|keep)&gt;/g, '</span>');
 }
 
 // For attributes and other places where a span is not allowed.
 export function plain(value) {
-  return escapeHtml(String(value).replaceAll(/<\/?(en|nl)>/g, ''));
+  return escapeHtml(String(value).replaceAll(/<\/?(en|nl|keep)>/g, ''));
 }
 
 // https://github.com/Niels023/ becomes github.com/Niels023

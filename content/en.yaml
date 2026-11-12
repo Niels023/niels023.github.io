@@ -1,5 +1,6 @@
 # All English text of the site and the cv. nl.yaml has the same parts in Dutch.
 # Wrap a Dutch term in <nl>...</nl> so screen readers pronounce it correctly.
+# Wrap words that have to stay on one line in <keep>...</keep>.
 
 meta:
   homeTitle: Niels van der Pijl, Software Development student from Haarlem
@@ -33,7 +34,7 @@ hero:
   title: Hi, I'm Niels.
   intro: >-
     I've always been into IT. Now I build my own apps, games and tools that people actually use.
-  facts: Software Development student (MBO level 4) from Haarlem, the Netherlands
+  facts: Software Development student (<keep>MBO level 4</keep>) from Haarlem, the Netherlands
   showProjects: See my projects
   downloadCv: Download my CV (PDF)
 
@@ -57,15 +58,15 @@ languages:
   - name: Dutch
     level: native
   - name: English
-    level: fluent, Cambridge certificate B2
+    level: fluent, Cambridge <keep>certificate B2</keep>
 
 about:
   title: About me
   paragraphs:
     - >-
-      I'm Niels van der Pijl. I live in Haarlem and study Software Development (MBO level 4) at
-      Nova College. I like to know how things work, and I'd rather build them myself. In my spare
-      time I make apps and games.
+      I'm Niels van der Pijl. I live in Haarlem and study Software Development
+      (<keep>MBO level 4</keep>) at Nova College. I like to know how things work, and I'd rather
+      build them myself. In my spare time I make apps and games.
     - >-
       In 2026 I did an internship with the Functional Management team at the Municipality of
       Haarlem. I mapped out which applications had a test plan, and built flows that keep that
@@ -83,7 +84,7 @@ contact:
   city: Location
 
 cv:
-  role: Software Development student (MBO level 4)
+  role: Software Development student (<keep>MBO level 4</keep>)
   profileTitle: Profile
   profile: >-
     Software Development student from Haarlem. I build apps, games and tools, and I like to know
@@ -133,8 +134,8 @@ cv:
       period: 2024 to present
       points:
         - >-
-          Senior secondary vocational education, level 4. Passed the exams for Dutch, English and
-          maths.
+          Senior secondary vocational education, <keep>level 4</keep>. Passed the exams for Dutch,
+          English and maths.
         - Diploma expected in 2027.
     - title: <nl>VMBO-TL</nl>
       place: De Hartenlust, Bloemendaal

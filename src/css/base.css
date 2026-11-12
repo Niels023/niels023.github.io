@@ -63,6 +63,11 @@ p {
   text-wrap: pretty;
 }
 
+/* Words that the content marks to stay together, such as MBO 4. */
+.keep {
+  white-space: nowrap;
+}
+
 img,
 svg {
   display: block;
