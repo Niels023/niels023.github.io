@@ -119,6 +119,15 @@
     left: 0;
     right: 0;
     display: block;
+    /*
+      On a phone held sideways the menu is higher than the screen. It scrolls
+      then, otherwise the last links could not be reached. The 4rem is the
+      height of the bar above the menu.
+    */
+    max-height: calc(100vh - 4rem);
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0.5rem var(--gutter) 1.5rem;
     border-bottom: 1px solid var(--line);
     background: var(--page);
