@@ -84,10 +84,6 @@
   text-decoration-thickness: 1px;
 }
 
-.cv__contact a {
-  overflow-wrap: anywhere;
-}
-
 .cv__columns {
   display: grid;
   gap: 2rem 3rem;

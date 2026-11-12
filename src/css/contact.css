@@ -10,10 +10,6 @@
   line-height: 1.2;
 }
 
-.contact__email a {
-  overflow-wrap: anywhere;
-}
-
 /* copy.js shows the button when the browser is able to copy. */
 .copy-button {
   display: none;

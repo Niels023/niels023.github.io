@@ -120,16 +120,12 @@
   gap: 2rem clamp(1.5rem, 3vw, 3rem);
 }
 
-/*
-  minmax(0, 1fr) lets the text column get as narrow as a small screen needs.
-  A word that is too long for it then breaks instead of sticking out.
-*/
+/* minmax(0, 1fr) lets the text column get as narrow as a small screen needs. */
 .small-project {
   display: grid;
   grid-template-columns: 6.5rem minmax(0, 1fr);
   gap: 1.25rem;
   align-items: start;
-  overflow-wrap: break-word;
 }
 
 .small-project__picture {
