@@ -11,7 +11,7 @@ sourceCode: https://github.com/Niels023/niels023.github.io
 # File name of a portrait photo in src/images, for example niels.jpg (JPG, PNG
 # or WebP). The build cuts it to 4 by 5, makes it smaller and puts it on the
 # home page and on the cv. While this says TODO there is no photo on either.
-photo: TODO
+photo: niels.jpg
 
 skills:
   code:
