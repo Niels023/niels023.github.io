@@ -14,6 +14,9 @@ import { startServer } from './server.js';
 const variantsDir = path.join(import.meta.dirname, '..', 'cv-variants');
 const temporaryFolder = 'cv-variant';
 
+// What a variant file can set. Another name is a typing mistake.
+const settings = ['language', 'photo', 'projects', 'text'];
+
 // Lays the changes over the normal texts. A text or a list replaces the
 // normal one as a whole. A name that the normal content does not have is a
 // typing mistake, so that stops with a message.
@@ -41,7 +44,16 @@ function pickProjects(projects, ids) {
 }
 
 async function makeVariant(name) {
-  const variant = readYamlFile(path.join(variantsDir, `${name}.yaml`));
+  // An empty file is a variant that changes nothing.
+  const variant = readYamlFile(path.join(variantsDir, `${name}.yaml`)) ?? {};
+  for (const key of Object.keys(variant)) {
+    if (!settings.includes(key)) {
+      throw new ContentError(
+        `${key} is not something a variant can set. Use ${settings.join(', ')}.`,
+      );
+    }
+  }
+
   const lang = variant.language ?? 'nl';
   if (lang !== 'nl' && lang !== 'en') {
     throw new ContentError('language has to be nl or en.');
