@@ -10,7 +10,7 @@
 
 @media print {
   html {
-    font-size: 8.4pt;
+    font-size: 8.3pt;
   }
 
   /* On screen the cv page is grey around the paper. Real paper is all white. */
@@ -86,6 +86,6 @@
   }
 
   .cv__updated {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
   }
 }
