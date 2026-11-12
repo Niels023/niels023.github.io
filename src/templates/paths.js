@@ -34,3 +34,8 @@ export const portraitWidths = [400, 800];
 export function portraitPath(width) {
   return `/assets/images/portrait-${width}.jpg`;
 }
+
+// The smaller copy of the screenshot of a project.
+export function screenshotPath(project) {
+  return `/assets/images/project-${project.id}.jpg`;
+}

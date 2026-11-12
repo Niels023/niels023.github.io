@@ -10,22 +10,30 @@ import {
   pdfPath,
   portraitPath,
   portraitWidths,
+  screenshotPath,
   shareImagePath,
 } from '../src/templates/paths.js';
 import { renderShareImage } from '../src/templates/share-image.js';
 
 const imagesDir = path.join(import.meta.dirname, '..', 'src', 'images');
 
-// Makes the files that need a real browser: the portrait, the cv PDFs, the
-// share images and the icons. serverUrl is where the freshly built site is
-// being served.
+// A screenshot is never shown bigger than half of this. The double size keeps
+// it sharp on a phone and on a 4K screen.
+const screenshotFit = { width: 960, height: 540 };
+
+// Makes the files that need a real browser: the portrait, the screenshots,
+// the cv PDFs, the share images and the icons. serverUrl is where the freshly
+// built site is being served.
 export async function makeBrowserFiles({ distDir, serverUrl, content }) {
-  const { site, text } = content;
+  const { site, text, projects } = content;
   const browser = await chromium.launch();
 
   try {
     // The cv and the share image show the portrait, so it is made first.
     if (site.photo) await savePortraits(browser, distDir, site.photo);
+    for (const project of projects) {
+      if (project.image) await saveScreenshot(browser, distDir, project);
+    }
 
     for (const lang of languages) {
       const pages = await savePdf(browser, {
@@ -48,38 +56,64 @@ export async function makeBrowserFiles({ distDir, serverUrl, content }) {
   }
 }
 
-// Saves the portrait in the sizes the pages use. The browser shows the photo
-// cut to 4 by 5 and a screenshot of that is saved. A screenshot holds nothing
-// but the picture, so what a phone stores inside a photo, like the place where
-// it was taken, never reaches the site.
-async function savePortraits(browser, distDir, photo) {
+// Opens a file from src/images in a new page, where it fills the whole
+// window. Returns the page and the real size of the picture.
+async function openImage(browser, file) {
   const page = await browser.newPage();
   // This address does not exist. The browser asks for it and gets the file.
-  const address = 'http://portrait.test/photo';
-  await page.route(address, (route) => route.fulfill({ path: path.join(imagesDir, photo) }));
+  const address = 'http://image.test/file';
+  await page.route(address, (route) => route.fulfill({ path: path.join(imagesDir, file) }));
+  // When the picture is higher than the window, the cut keeps the part above
+  // the middle, which is where a face usually is.
+  await page.setContent(
+    `<style>body { margin: 0 } img { display: block; width: 100vw; height: 100vh; object-fit: cover; object-position: 50% 25% }</style><img src="${address}">`,
+  );
 
-  for (const width of portraitWidths) {
-    // When a photo is too high, the cut keeps the part above the middle,
-    // which is where a face usually is.
-    await page.setViewportSize({ width, height: width * 1.25 });
-    await page.setContent(
-      `<style>body { margin: 0 } img { display: block; width: 100vw; height: 100vh; object-fit: cover; object-position: 50% 25% }</style><img src="${address}">`,
+  const size = await page.evaluate(() => {
+    const image = document.querySelector('img');
+    return { width: image.naturalWidth, height: image.naturalHeight };
+  });
+  // A file that only has the name of a picture, such as a HEIC that was
+  // renamed to .jpg, would end up on the site as a broken picture.
+  if (size.width === 0) {
+    throw new ContentError(
+      `The browser cannot open src/images/${file}. Save it again as a JPG or PNG.`,
     );
-    // A file that only has the name of a photo, such as a HEIC that was
-    // renamed to .jpg, would end up on the site as a broken picture.
-    const opened = await page.evaluate(() => document.querySelector('img').naturalWidth > 0);
-    if (!opened) {
-      throw new ContentError(
-        `site.yaml: the browser cannot open src/images/${photo}. Save the photo again as a JPG.`,
-      );
-    }
+  }
+  return { page, ...size };
+}
+
+// Saves the portrait in the sizes the pages use, cut to 4 by 5. What is saved
+// is a screenshot of the photo. A screenshot holds nothing but the picture, so
+// what a phone stores inside a photo, like the place where it was taken, never
+// reaches the site.
+async function savePortraits(browser, distDir, photo) {
+  const { page } = await openImage(browser, photo);
+  for (const width of portraitWidths) {
+    await page.setViewportSize({ width, height: width * 1.25 });
     await takeScreenshot(page, {
       path: path.join(distDir, portraitPath(width)),
       type: 'jpeg',
       quality: 85,
     });
   }
+  await page.close();
+}
 
+// Saves a smaller copy of the screenshot of a project, in its own shape. It
+// is made the same way as the portrait, so the file itself stays off the site.
+async function saveScreenshot(browser, distDir, project) {
+  const { page, width, height } = await openImage(browser, project.image);
+  const scale = Math.min(1, screenshotFit.width / width, screenshotFit.height / height);
+  await page.setViewportSize({
+    width: Math.round(width * scale),
+    height: Math.round(height * scale),
+  });
+  await takeScreenshot(page, {
+    path: path.join(distDir, screenshotPath(project)),
+    type: 'jpeg',
+    quality: 90,
+  });
   await page.close();
 }
 

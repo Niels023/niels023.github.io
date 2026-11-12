@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { escapeHtml, plain, sentenceList, shortUrl, text } from './html.js';
-import { pagePath, pdfDownloadName, pdfPath, portraitPath } from './paths.js';
+import { pagePath, pdfDownloadName, pdfPath, portraitPath, screenshotPath } from './paths.js';
 
 const sketchDir = path.join(import.meta.dirname, '..', 'sketches');
 
@@ -97,7 +97,7 @@ function projectAnchor(project) {
 function renderPicture({ t, lang, project }) {
   if (project.image) {
     const alt = `${plain(t.projects.screenshotOf)} ${plain(project[lang].title)}`;
-    return `<img src="/assets/images/${escapeHtml(project.image)}" alt="${alt}" width="800" height="500" loading="lazy">`;
+    return `<img src="${screenshotPath(project)}" alt="${alt}" loading="lazy">`;
   }
   return fs.readFileSync(path.join(sketchDir, `${project.sketch}.svg`), 'utf8').trim();
 }
