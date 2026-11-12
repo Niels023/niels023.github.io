@@ -57,7 +57,9 @@ export function startServer(folder, port = 0, host = '127.0.0.1') {
     response.writeHead(status, { 'Content-Type': contentType }).end(content);
   });
 
-  return new Promise((resolve) => {
+  // Starting fails when another program already uses the port.
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
     server.listen(port, host, () => {
       resolve({ url: `http://localhost:${server.address().port}`, close: () => server.close() });
     });

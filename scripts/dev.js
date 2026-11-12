@@ -50,8 +50,18 @@ function networkAddresses() {
     .map((address) => address.address);
 }
 
+// The server starts before the first build, so a port that is taken shows
+// right away instead of after a build.
+let server;
+try {
+  server = await startServer(distDir, port, onNetwork ? '0.0.0.0' : '127.0.0.1');
+} catch (error) {
+  if (error.code !== 'EADDRINUSE') throw error;
+  console.error(`Port ${port} is already in use. Is the preview running in another terminal?`);
+  process.exit(1);
+}
+
 await rebuild();
-const server = await startServer(distDir, port, onNetwork ? '0.0.0.0' : '127.0.0.1');
 console.log(`\nPreview on ${server.url}`);
 if (onNetwork) {
   for (const address of networkAddresses()) {
