@@ -44,8 +44,8 @@ export async function makeBrowserFiles({ distDir, serverUrl, content }) {
         lang,
       });
       console.log(`cv ${lang}: ${pages} ${pages === 1 ? 'page' : 'pages'}`);
-      if (pages > 2) {
-        console.warn(`Warning: the ${lang} cv is longer than two pages. Shorten its texts.`);
+      if (pages > 1) {
+        console.warn(`Warning: the ${lang} cv no longer fits on one page. Shorten its texts.`);
       }
 
       await saveShareImage(browser, { distDir, serverUrl, site, t: text[lang], lang });
