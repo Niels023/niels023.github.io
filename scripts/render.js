@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { PDFDocument } from 'pdf-lib';
 import { chromium } from 'playwright';
+import { ContentError } from './content.js';
 import { renderAppIcon, renderFavicon } from '../src/templates/favicon.js';
 import {
   languages,
@@ -64,6 +65,14 @@ async function savePortraits(browser, distDir, photo) {
     await page.setContent(
       `<style>body { margin: 0 } img { display: block; width: 100vw; height: 100vh; object-fit: cover; object-position: 50% 25% }</style><img src="${address}">`,
     );
+    // A file that only has the name of a photo, such as a HEIC that was
+    // renamed to .jpg, would end up on the site as a broken picture.
+    const opened = await page.evaluate(() => document.querySelector('img').naturalWidth > 0);
+    if (!opened) {
+      throw new ContentError(
+        `site.yaml: the browser cannot open src/images/${photo}. Save the photo again as a JPG.`,
+      );
+    }
     await takeScreenshot(page, {
       path: path.join(distDir, portraitPath(width)),
       type: 'jpeg',
