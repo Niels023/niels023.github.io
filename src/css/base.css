@@ -19,6 +19,8 @@ body {
   font-family: var(--font-text);
   font-size: var(--text);
   line-height: 1.6;
+  /* A word that is wider than the screen breaks instead of sticking out. */
+  overflow-wrap: anywhere;
 }
 
 h1,
