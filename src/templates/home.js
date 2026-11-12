@@ -186,6 +186,7 @@ function renderContact({ site, t }) {
     <p class="contact__email">
       <a href="mailto:${escapeHtml(site.email)}">${escapeHtml(site.email)}</a>
       <button class="button button--outline button--small copy-button" type="button" data-copy="${escapeHtml(site.email)}" data-copied="${plain(t.contact.copied)}">${text(t.contact.copy)}</button>
+      <span class="visually-hidden" role="status" data-copy-status></span>
     </p>
     <dl class="contact__list">
       <div><dt>GitHub</dt><dd><a href="${escapeHtml(site.github)}">${escapeHtml(shortUrl(site.github))}</a></dd></div>
