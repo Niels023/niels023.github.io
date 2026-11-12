@@ -26,6 +26,7 @@ export function loadContent() {
     warnings.push(`nl.yaml and en.yaml differ at ${difference}`);
   }
   checkProjects(raw.projects, warnings);
+  checkTags(raw);
 
   const placeholders = [];
   const site = withoutPlaceholders(raw.site, 'site.yaml: ', placeholders);
@@ -143,6 +144,40 @@ function checkProjects(projects, warnings) {
 
   if (problems.length > 0) {
     throw new ContentError(`projects.yaml is not complete.\n- ${problems.join('\n- ')}`);
+  }
+}
+
+// A text that opens <en>, <nl> or <keep> has to close it again. Without the
+// closing tag everything after it would get the wrong language, or would no
+// longer wrap to the next line.
+function checkTags(raw) {
+  const problems = [];
+  findOpenTags(raw.nl, 'nl.yaml: ', problems);
+  findOpenTags(raw.en, 'en.yaml: ', problems);
+  for (const project of raw.projects) {
+    findOpenTags(project, `projects.yaml: ${project.id}.`, problems);
+  }
+
+  if (problems.length > 0) {
+    throw new ContentError(`A text is not right.\n- ${problems.join('\n- ')}`);
+  }
+}
+
+function findOpenTags(value, where, problems) {
+  if (typeof value === 'string') {
+    for (const tag of ['en', 'nl', 'keep']) {
+      const opened = value.split(`<${tag}>`).length - 1;
+      const closed = value.split(`</${tag}>`).length - 1;
+      if (opened !== closed) {
+        problems.push(`${where.replace(/\.$/, '')}: <${tag}> and </${tag}> do not match`);
+      }
+    }
+  } else if (Array.isArray(value)) {
+    value.forEach((item, i) => findOpenTags(item, `${where}${i + 1}.`, problems));
+  } else if (isObject(value)) {
+    for (const [key, child] of Object.entries(value)) {
+      findOpenTags(child, `${where}${key}.`, problems);
+    }
   }
 }
 
