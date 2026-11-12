@@ -31,6 +31,8 @@ export function loadContent() {
   const projects = raw.projects.map((project) =>
     withoutPlaceholders(withDefaults(project), `projects.yaml: ${project.id}.`, placeholders),
   );
+  const nl = withoutPlaceholders(raw.nl, 'nl.yaml: ', placeholders);
+  const en = withoutPlaceholders(raw.en, 'en.yaml: ', placeholders);
   for (const place of placeholders) {
     warnings.push(`placeholder left at ${place}`);
   }
@@ -41,8 +43,8 @@ export function loadContent() {
     site: strict(site, 'site.yaml: '),
     projects: projects.map((project) => strict(project, `projects.yaml: ${project.id}.`)),
     text: {
-      nl: strict(raw.nl, 'nl.yaml: '),
-      en: strict(raw.en, 'en.yaml: '),
+      nl: strict(nl, 'nl.yaml: '),
+      en: strict(en, 'en.yaml: '),
     },
   };
 }
