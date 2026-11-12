@@ -122,6 +122,10 @@ function checkProjects(projects, warnings) {
     for (const key of ['id', 'sketch', 'tech', 'nl', 'en']) {
       if (project?.[key] === undefined) problems.push(`${name}: ${key} is missing`);
     }
+    // The id ends up in an address and in a file name.
+    if (project?.id !== undefined && !/^[a-z0-9-]+$/.test(project.id)) {
+      problems.push(`${name}: an id may only have small letters, digits and dashes`);
+    }
     if (project?.tech !== undefined && !Array.isArray(project.tech)) {
       problems.push(`${name}: tech has to be a list, also when it has one item`);
     }
