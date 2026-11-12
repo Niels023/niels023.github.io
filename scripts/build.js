@@ -8,7 +8,7 @@ import { renderFavicon } from '../src/templates/favicon.js';
 import { fonts } from '../src/templates/fonts.js';
 import { renderHome } from '../src/templates/home.js';
 import { renderPage } from '../src/templates/layout.js';
-import { languages, pagePath } from '../src/templates/paths.js';
+import { languages, locales, pagePath } from '../src/templates/paths.js';
 import { renderManifest, renderRobots, renderSitemap } from '../src/templates/seo-files.js';
 import { renderLanguageChooser, renderNotFound } from '../src/templates/small-pages.js';
 
@@ -34,7 +34,6 @@ const cssFiles = [
 
 // The server of GitHub Actions runs in UTC, so dates name their time zone.
 const timeZone = 'Europe/Amsterdam';
-const locales = { nl: 'nl-NL', en: 'en-GB' };
 
 function yearOf(date) {
   return new Intl.DateTimeFormat('en-GB', { year: 'numeric', timeZone }).format(date);

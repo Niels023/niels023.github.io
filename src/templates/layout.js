@@ -3,6 +3,7 @@ import { fonts, fontUrl } from './fonts.js';
 import { escapeHtml, plain, text } from './html.js';
 import {
   languages,
+  locales,
   otherLanguage,
   pagePath,
   pdfDownloadName,
@@ -70,7 +71,8 @@ export function renderSeo({ site, t, lang, page, url, title, description }) {
   // The home page has / as its neutral address. The cv has no neutral
   // address, so there English is the fallback.
   const fallback = page === 'cv' ? site.url + pagePath('en', 'cv') : `${site.url}/`;
-  const locales = { nl: 'nl_NL', en: 'en_GB' };
+  // These tags write a locale as nl_NL, where the rest of the web writes nl-NL.
+  const shareLocale = (language) => locales[language].replace('-', '_');
 
   return `<link rel="canonical" href="${url}">
 ${languages.map((l) => `<link rel="alternate" hreflang="${l}" href="${site.url}${pagePath(l, page)}">`).join('\n')}
@@ -80,8 +82,8 @@ ${languages.map((l) => `<link rel="alternate" hreflang="${l}" href="${site.url}$
 <meta property="og:title" content="${plain(title)}">
 <meta property="og:description" content="${plain(description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:locale" content="${locales[lang]}">
-<meta property="og:locale:alternate" content="${locales[otherLanguage(lang)]}">
+<meta property="og:locale" content="${shareLocale(lang)}">
+<meta property="og:locale:alternate" content="${shareLocale(otherLanguage(lang))}">
 <meta property="og:image" content="${site.url}${shareImagePath(lang)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">

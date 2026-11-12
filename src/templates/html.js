@@ -1,3 +1,5 @@
+import { locales } from './paths.js';
+
 export function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -26,5 +28,5 @@ export function shortUrl(url) {
 
 // "PHP, MySQL en Git" in Dutch, "PHP, MySQL and Git" in English.
 export function sentenceList(items, lang) {
-  return new Intl.ListFormat(lang, { type: 'conjunction' }).format(items);
+  return new Intl.ListFormat(locales[lang], { type: 'conjunction' }).format(items);
 }

@@ -1,5 +1,10 @@
 export const languages = ['nl', 'en'];
 
+// The kind of Dutch and English the site is written in. Dates and lists
+// follow it: British English writes "PHP, MySQL and Git" without a comma
+// before "and".
+export const locales = { nl: 'nl-NL', en: 'en-GB' };
+
 export function otherLanguage(lang) {
   return lang === 'nl' ? 'en' : 'nl';
 }
