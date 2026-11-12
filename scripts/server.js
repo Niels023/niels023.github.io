@@ -37,7 +37,9 @@ export function startServer(folder, port = 0, host = '127.0.0.1') {
     }
     let filePath = path.join(folder, urlPath);
 
-    if (!filePath.startsWith(folder)) {
+    // With the separator at the end, a folder next to this one whose name
+    // starts the same, such as dist-old, does not count as inside.
+    if (!filePath.startsWith(folder + path.sep)) {
       response.writeHead(403).end();
       return;
     }
