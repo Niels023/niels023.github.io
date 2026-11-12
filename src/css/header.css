@@ -77,6 +77,19 @@
   color: var(--page);
 }
 
+/*
+  The high contrast mode of Windows takes background colours away, so the
+  language in use would look the same as the other one. It gets the colours
+  that Windows uses for a selected item.
+*/
+@media (forced-colors: active) {
+  .language-switch a[aria-current] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
 /* Both buttons need JavaScript, so they only show when it runs. */
 .theme-toggle,
 .menu-button {
