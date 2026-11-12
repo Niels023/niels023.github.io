@@ -13,7 +13,9 @@
     font-size: 8.4pt;
   }
 
-  body {
+  /* On screen the cv page is grey around the paper. Real paper is all white. */
+  body,
+  .page-cv {
     background: #fff;
   }
 
