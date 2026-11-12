@@ -4,6 +4,7 @@ import { parse } from 'yaml';
 
 const contentDir = path.join(import.meta.dirname, '..', 'content');
 const imagesDir = path.join(import.meta.dirname, '..', 'src', 'images');
+const sketchesDir = path.join(import.meta.dirname, '..', 'src', 'sketches');
 
 // The kinds of photo a browser can open. The HEIC of an iPhone is not one.
 const photoTypes = ['.jpg', '.jpeg', '.png', '.webp'];
@@ -121,6 +122,9 @@ function checkProjects(projects, warnings) {
     for (const key of ['id', 'sketch', 'tech', 'nl', 'en']) {
       if (project?.[key] === undefined) problems.push(`${name}: ${key} is missing`);
     }
+    if (project?.tech !== undefined && !Array.isArray(project.tech)) {
+      problems.push(`${name}: tech has to be a list, also when it has one item`);
+    }
     for (const lang of ['nl', 'en']) {
       for (const key of ['title', 'summary']) {
         if (isObject(project?.[lang]) && !project[lang][key]) {
@@ -138,7 +142,8 @@ function checkProjects(projects, warnings) {
   }
 }
 
-// The photo and the screenshots that the content names have to be in src/images.
+// The photo and the screenshots that the content names have to be in
+// src/images, the drawings in src/sketches.
 function checkImages(site, projects) {
   const named = [
     ['site.yaml: photo', site.photo],
@@ -149,6 +154,13 @@ function checkImages(site, projects) {
   for (const [where, file] of named) {
     if (file && !fs.existsSync(path.join(imagesDir, file))) {
       problems.push(`${where}: there is no file src/images/${file}`);
+    }
+  }
+  for (const project of projects) {
+    if (!fs.existsSync(path.join(sketchesDir, `${project.sketch}.svg`))) {
+      problems.push(
+        `projects.yaml: ${project.id}.sketch: there is no drawing src/sketches/${project.sketch}.svg`,
+      );
     }
   }
   if (site.photo && !photoTypes.includes(path.extname(site.photo).toLowerCase())) {
