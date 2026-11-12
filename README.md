@@ -12,7 +12,7 @@ from a few YAML files and writes the pages to `dist/`. The same build makes the 
 
 ## Getting started
 
-You need [Node.js](https://nodejs.org) 24.
+You need [Node.js](https://nodejs.org) 24, version 24.2 or newer.
 
 ```
 npm install
