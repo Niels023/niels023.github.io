@@ -9,25 +9,37 @@
   gap: 0.75rem;
 }
 
-/* The picture of a project: a screenshot or, until there is one, a drawing. */
-.project__picture {
-  position: relative;
+/*
+  The picture of a project: a screenshot or, until there is one, a drawing.
+  The grid has one cell that is exactly as big as the panel, so a picture can
+  be told to stay inside it.
+*/
+.project__picture,
+.small-project__picture {
   display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
-  aspect-ratio: 16 / 10;
-  margin-bottom: 0.5rem;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
   overflow: hidden;
   background: var(--surface);
 }
 
+.project__picture {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 0.5rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/*
+  A screenshot is shown whole and in its own shape, whether it is wide,
+  square or the tall screen of a phone. Nothing is cut off.
+*/
 .project__picture img,
 .small-project__picture img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: auto;
+  max-height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
 }
 
 /* The drawings that stand in for a screenshot. */
@@ -117,11 +129,8 @@
 }
 
 .small-project__picture {
-  position: relative;
   height: 4.5rem;
   padding: 0.4rem;
-  overflow: hidden;
-  background: var(--surface);
 }
 
 .small-project .sketch {
