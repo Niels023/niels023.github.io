@@ -63,9 +63,9 @@ function renderProject({ t, lang, project }) {
   return `<article class="project" id="${projectAnchor(project)}">
   <div class="panel project__picture">
     ${renderPicture({ t, lang, project })}
-    ${p.status ? `<p class="project__status">${text(p.status)}</p>` : ''}
   </div>
   <h3 class="project__title">${text(p.title)}</h3>
+  ${p.status ? `<p class="project__status">${text(p.status)}</p>` : ''}
   <p>${text(p.summary)}</p>
   ${p.learned ? `<p class="project__learned"><strong>${text(t.projects.learned)}</strong> ${text(p.learned)}</p>` : ''}
   <p class="project__tech">${text(t.projects.madeWith)} ${plain(sentenceList(project.tech, lang))}</p>
