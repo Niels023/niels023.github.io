@@ -92,14 +92,16 @@ Images go in `src/images/`. Their file names go in the content files:
 
 - The portrait photo: `photo` in `content/site.yaml`. Use a JPG, PNG or WebP file. A photo straight
   from an iPhone is often a HEIC file, save that as JPG first.
-- A screenshot of a project: `image` of that project in `content/projects.yaml`.
+- A screenshot of a project: `image` of that project in `content/projects.yaml`. It can have any
+  shape: a wide web page, a square window or the tall screen of a phone. It is shown whole.
 
 The build cuts the portrait to 4 wide by 5 high, saves it in two smaller sizes and puts it on the
-home page, on the cv, in the cv PDF and in the share image. The photo you put in `src/images/` is
-never published itself, only those smaller copies. They hold nothing but the picture, so not the
-place where the photo was taken either.
+home page, on the cv, in the cv PDF and in the share image. Of each screenshot it saves one smaller
+copy. The files you put in `src/images/` are never published themselves, only those copies. They
+hold nothing but the picture, so not the place where a photo was taken either.
 
-While `photo` says `TODO` the site and the cv simply have no photo.
+While `photo` says `TODO` the site and the cv simply have no photo. A project without a screenshot
+shows a drawing.
 
 ## A cv for one job application
 
