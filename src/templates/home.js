@@ -60,7 +60,7 @@ function renderProjects({ t, lang, projects }) {
 
 function renderProject({ t, lang, project }) {
   const p = project[lang];
-  return `<article class="project">
+  return `<article class="project" id="${projectAnchor(project)}">
   <div class="panel project__picture">
     ${renderPicture({ t, lang, project })}
     ${p.status ? `<p class="project__status">${text(p.status)}</p>` : ''}
@@ -76,7 +76,7 @@ function renderProject({ t, lang, project }) {
 
 function renderSmallProject({ t, lang, project }) {
   const p = project[lang];
-  return `<article class="small-project">
+  return `<article class="small-project" id="${projectAnchor(project)}">
   <div class="panel small-project__picture">${renderPicture({ t, lang, project })}</div>
   <div>
     <h4 class="small-project__title">${text(p.title)}</h4>
@@ -85,6 +85,12 @@ function renderSmallProject({ t, lang, project }) {
     ${renderLinks(project.links, lang)}
   </div>
 </article>`;
+}
+
+// The id of a project on the page, the same in both languages. A link that
+// ends in #project-claudot opens the page at that project.
+function projectAnchor(project) {
+  return `project-${escapeHtml(project.id)}`;
 }
 
 // A screenshot when there is one, otherwise the drawing.
