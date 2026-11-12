@@ -64,8 +64,9 @@ ${fontLinks.join('\n')}
 ${scripts.map((name) => `<script type="module" src="/assets/js/${name}.js"></script>`).join('\n')}`;
 }
 
-function renderSeo({ site, t, lang, page, title, description }) {
-  const url = site.url + pagePath(lang, page);
+// The tags for search engines and for the preview that shows up when someone
+// shares a link. url is the address of the page itself.
+export function renderSeo({ site, t, lang, page, url, title, description }) {
   // The home page has / as its neutral address. The cv has no neutral
   // address, so there English is the fallback.
   const fallback = page === 'cv' ? site.url + pagePath('en', 'cv') : `${site.url}/`;
@@ -163,7 +164,7 @@ export function renderPage({ site, t, lang, page, title, description, year, main
 <html lang="${lang}" class="no-js" ${hello}>
 <head>
 ${renderHead({ title, description, scripts: [...sharedScripts, ...scripts] })}
-${renderSeo({ site, t, lang, page, title, description })}
+${renderSeo({ site, t, lang, page, url: site.url + pagePath(lang, page), title, description })}
 ${page === 'home' ? renderPersonData(site) : ''}
 </head>
 <body class="page-${page}">

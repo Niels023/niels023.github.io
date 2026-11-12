@@ -1,5 +1,5 @@
 import { plain, text } from './html.js';
-import { renderHead } from './layout.js';
+import { renderHead, renderSeo } from './layout.js';
 import { languages, pagePath } from './paths.js';
 
 // GitHub Pages cannot redirect on the server, so the page at / does it in
@@ -19,23 +19,22 @@ const redirectScript = `(function () {
 const languageNames = { nl: 'Nederlands', en: 'English' };
 
 // The page at /. Visitors without JavaScript get a link to each language.
+//
+// A program that makes a preview of a shared link does not follow the
+// redirect either. It reads this page, so this page has the share tags too,
+// in English.
 export function renderLanguageChooser({ site, text: allText }) {
   const links = languages.map(
     (lang) =>
       `<a class="button" href="${pagePath(lang, 'home')}" lang="${lang}" hreflang="${lang}">${languageNames[lang]}</a>`,
   );
+  const description = allText.en.meta.homeDescription;
 
   return `<!doctype html>
 <html lang="en">
 <head>
-${renderHead({
-  title: site.name,
-  description: allText.en.meta.homeDescription,
-  inlineScript: redirectScript,
-})}
-<link rel="canonical" href="${site.url}/">
-${languages.map((lang) => `<link rel="alternate" hreflang="${lang}" href="${site.url}${pagePath(lang, 'home')}">`).join('\n')}
-<link rel="alternate" hreflang="x-default" href="${site.url}/">
+${renderHead({ title: site.name, description, inlineScript: redirectScript })}
+${renderSeo({ site, t: allText.en, lang: 'en', page: 'home', url: `${site.url}/`, title: site.name, description })}
 </head>
 <body>
 <main class="small-page">
