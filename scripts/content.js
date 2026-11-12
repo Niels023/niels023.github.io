@@ -78,7 +78,7 @@ function isObject(value) {
 
 // Lists every place where the Dutch and the English content do not have the
 // same parts: a missing key or a list with a different number of items.
-export function findDifferences(nl, en, where = '') {
+function findDifferences(nl, en, where = '') {
   if (Array.isArray(nl) && Array.isArray(en)) {
     const differences = [];
     if (nl.length !== en.length) {

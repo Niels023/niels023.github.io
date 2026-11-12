@@ -28,7 +28,7 @@ const themeScript = `(function () {
 })();`;
 
 // Only our own files may load. The one inline script is allowed by its hash.
-export function securityPolicy(inlineScript) {
+function securityPolicy(inlineScript) {
   const hash = crypto.createHash('sha256').update(inlineScript).digest('base64');
   return [
     "default-src 'self'",
@@ -139,7 +139,7 @@ function renderHeader({ site, t, lang, page }) {
 </header>`;
 }
 
-export function renderLanguageSwitch({ t, lang, page }) {
+function renderLanguageSwitch({ t, lang, page }) {
   const names = { nl: 'Nederlands', en: 'English' };
   const links = languages.map((l) => {
     const current = l === lang ? ' aria-current="true"' : '';
