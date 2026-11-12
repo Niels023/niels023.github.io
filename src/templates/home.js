@@ -16,9 +16,10 @@ export function renderHome(page) {
 }
 
 function renderHero({ site, t, lang }) {
-  // The browser picks the small or the large copy of the photo by itself.
+  // The browser picks the small or the large copy of the photo by itself. The
+  // photo is the biggest thing on the first screen, so it is loaded first.
   const photo = site.photo
-    ? `<img class="hero__photo" src="${portraitPath(800)}" srcset="${portraitPath(400)} 400w, ${portraitPath(800)} 800w" sizes="(min-width: 48rem) 22rem, 8rem" alt="${plain(t.meta.photoAlt)}" width="800" height="1000">`
+    ? `<img class="hero__photo" src="${portraitPath(800)}" srcset="${portraitPath(400)} 400w, ${portraitPath(800)} 800w" sizes="(min-width: 48rem) 22rem, 8rem" alt="${plain(t.meta.photoAlt)}" width="800" height="1000" fetchpriority="high">`
     : '';
 
   return `<section class="hero" id="top" aria-labelledby="hero-title">
