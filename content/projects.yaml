@@ -78,7 +78,7 @@
     - GDScript
   links:
     - url: https://github.com/Claudot-Code/claudot-pub/pulls?q=is%3Apr+author%3ANiels023+is%3Amerged
-      nl: Mijn gemergde <en>pull requests</en>
+      nl: <en>Pull requests</en> die gemerged zijn
       en: My merged pull requests
     - url: https://github.com/Niels023/claudot-pub
       nl: Mijn fork
