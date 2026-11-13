@@ -31,7 +31,7 @@ nav:
   downloadCv: Download cv
 
 hero:
-  title: Hoi, ik ben Niels.
+  title: Hallo, ik ben Niels.
   intro: >-
     Ik ben altijd al met ICT bezig geweest. Nu bouw ik zelf apps, games en tools die echt gebruikt
     worden.
@@ -78,7 +78,7 @@ about:
 
 contact:
   title: Contact
-  intro: Wil je iets vragen of heb je een idee? Mail me of stuur een bericht via LinkedIn.
+  intro: Een vraag of een idee? Stuur een e-mail of een bericht via LinkedIn.
   email: E-mail
   copy: Kopieer adres
   copied: Gekopieerd
@@ -152,4 +152,4 @@ notFound:
   home: Naar de startpagina
 
 console:
-  hello: Hoi! Benieuwd hoe deze site gemaakt is? De code staat op
+  hello: Hallo! Benieuwd hoe deze site gemaakt is? De code staat op

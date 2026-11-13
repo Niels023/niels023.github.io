@@ -22,21 +22,21 @@
   nl:
     title: PC-bouwplanner
     summary: >-
-      Een website waarop je zelf een pc samenstelt. Hij controleert of de onderdelen bij elkaar
-      passen, telt prijs en stroomverbruik op en stelt een <en>build</en> voor op basis van je
-      budget en doel. Een schoolproject dat ik alleen heb gemaakt.
+      Een website om een pc samen te stellen. Hij controleert of de onderdelen bij elkaar passen,
+      telt prijs en stroomverbruik op en stelt een <en>build</en> voor op basis van budget en
+      doel. Een schoolproject dat ik alleen heb gemaakt.
     learned: >-
-      Hoe je een database opzet waarmee je kunt controleren of onderdelen bij elkaar passen, en
-      hoe je in je eentje een project van begin tot eind plant.
+      Een database opzetten waarmee onderdelen op compatibiliteit worden gecontroleerd, en in mijn
+      eentje een project van begin tot eind plannen.
   en:
     title: PC build planner
     summary: >-
-      A website for putting together your own PC. It checks whether the parts are compatible, adds
-      up the price and power draw, and suggests a build for your budget and what you want to use it
-      for. A school project I built on my own.
+      A website for putting together a PC. It checks whether the parts are compatible, adds up the
+      price and power draw, and suggests a build based on budget and purpose. A school project I
+      built on my own.
     learned: >-
-      How to set up a database that lets you check whether parts fit together, and how to plan a
-      project from start to finish when you are the only one working on it.
+      How to set up a database that checks whether parts fit together, and how to plan a project
+      from start to finish on my own.
 
 - id: android-minigames
   featured: true
@@ -93,8 +93,8 @@
       bleef draaien nadat Godot was afgesloten, en het versielabel met de link naar de
       <en>releases</en>.
     learned: >-
-      Me inlezen in code van iemand anders en een bug zo beschrijven dat een ander hem kan volgen.
-      En dat een <en>fix</en> soms betekent dat je code weghaalt in plaats van toevoegt.
+      Mijn weg vinden in andermans code en een bug zo beschrijven dat een ander hem kan volgen.
+      En dat een <en>fix</en> soms betekent dat er code uit moet in plaats van erbij.
   en:
     title: Contributions to Claudot
     status: Open source

@@ -5,8 +5,8 @@
 meta:
   homeTitle: Niels van der Pijl, Software Development student from Haarlem
   homeDescription: >-
-    I'm Niels, a Software Development student from Haarlem. Have a look at my projects in PHP,
-    Java and Python, read my CV or get in touch.
+    I am Niels, a Software Development student from Haarlem. See my projects in PHP, Java and
+    Python, read my CV or get in touch.
   cvTitle: CV of Niels van der Pijl
   cvDescription: >-
     The CV of Niels van der Pijl, Software Development student. With education, work experience,
@@ -31,16 +31,17 @@ nav:
   downloadCv: Download CV
 
 hero:
-  title: Hi, I'm Niels.
+  title: Hello, I am Niels.
   intro: >-
-    I've always been into IT. Now I build my own apps, games and tools that people actually use.
+    I have always been interested in IT. Now I build my own apps, games and tools that people
+    actually use.
   facts: Software Development student (<keep>MBO level 4</keep>) from Haarlem, the Netherlands
   showProjects: See my projects
   downloadCv: Download my CV (PDF)
 
 projects:
   title: Projects
-  intro: Things I've built on my own, with classmates and during my internship.
+  intro: Things I have built on my own, with classmates and during my internship.
   learned: What I learned
   madeWith: Built with
   smaller: Smaller projects
@@ -64,8 +65,8 @@ about:
   title: About me
   paragraphs:
     - >-
-      I'm Niels van der Pijl. I live in Haarlem and study Software Development
-      (<keep>MBO level 4</keep>) at Nova College. I like to know how things work, and I'd rather
+      I am Niels van der Pijl. I live in Haarlem and study Software Development
+      (<keep>MBO level 4</keep>) at Nova College. I want to know how things work and prefer to
       build them myself. In my spare time I make apps and games.
     - >-
       In 2026 I did an internship with the Functional Management team at the Municipality of
@@ -77,7 +78,7 @@ about:
 
 contact:
   title: Contact
-  intro: Got a question or an idea? Send me an email or a message on LinkedIn.
+  intro: A question or an idea? Send an email or a message on LinkedIn.
   email: Email
   copy: Copy address
   copied: Copied
@@ -149,8 +150,8 @@ footer:
 
 notFound:
   title: Page not found
-  text: This page doesn't exist or has moved.
+  text: This page does not exist or has moved.
   home: Go to the homepage
 
 console:
-  hello: Hi! Curious how this site was made? The code is at
+  hello: Hello! Curious how this site was made? The code is at
