@@ -111,7 +111,6 @@ function renderPersonData(site) {
 function renderHeader({ site, t, lang, page }) {
   const home = pagePath(lang, 'home');
   const sections = ['projects', 'skills', 'about'];
-  const cvCurrent = page === 'cv' ? ' aria-current="page"' : '';
 
   return `<header class="site-header">
   <div class="wrap site-header__bar">
@@ -119,7 +118,6 @@ function renderHeader({ site, t, lang, page }) {
     <nav class="site-nav" id="site-nav" aria-label="${plain(t.a11y.mainMenu)}">
       <ul class="site-nav__list" role="list">
         ${sections.map((id) => `<li><a href="${home}#${id}">${text(t.nav[id])}</a></li>`).join('\n        ')}
-        <li><a href="${pagePath(lang, 'cv')}"${cvCurrent}>${text(t.nav.cv)}</a></li>
         <li><a href="${home}#contact">${text(t.nav.contact)}</a></li>
         <li><a class="button button--small" href="${pdfPath(site, lang)}" download="${pdfDownloadName(site, lang)}">${text(t.nav.downloadCv)}</a></li>
       </ul>

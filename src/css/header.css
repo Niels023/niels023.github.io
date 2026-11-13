@@ -36,8 +36,7 @@
   text-decoration: none;
 }
 
-.site-nav a:not(.button):hover,
-.site-nav a[aria-current] {
+.site-nav a:not(.button):hover {
   text-decoration: underline;
 }
 
