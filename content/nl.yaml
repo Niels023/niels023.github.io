@@ -110,16 +110,12 @@ cv:
       note: BPV-stage van 80 dagen, afgerond in oktober 2026.
       points:
         - >-
-          Alle gemeentelijke applicaties geïnventariseerd op de vraag of er een testplan voor is,
-          per domein en per beheerder, in één Excel-overzicht.
-        - >-
-          Een uniform testplansjabloon gemaakt dat de losse formats van de verschillende teams
-          vervangt.
+          Ruim 150 gemeentelijke applicaties geïnventariseerd op de aanwezigheid van een testplan,
+          een uniform testplansjabloon ontwikkeld en dat samen met beheerders toegepast.
         - >-
           Met Power Automate twee <en>flows</en> gebouwd die in SharePoint controleren of er per
           applicatie een testplan staat en het overzicht automatisch bijwerken, met grafieken per
           domein.
-        - Samen met functioneel beheerders testplannen opgesteld en uitgevoerd.
         - Een collega ingewerkt die het werk na mijn stage voortzet.
     - title: Snuffelstage Functioneel Beheer
       place: Gemeente Haarlem

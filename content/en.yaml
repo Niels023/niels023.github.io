@@ -109,15 +109,12 @@ cv:
       note: An 80-day work placement, completed in October 2026.
       points:
         - >-
-          Took stock of every municipal application to see whether it had a test plan, by domain
-          and by application manager, in a single Excel overview.
-        - >-
-          Created one standard test plan template to replace the separate formats used by
-          different teams.
+          Took stock of more than 150 municipal applications to see whether each had a test plan,
+          developed one standard test plan template and put it to use together with application
+          managers.
         - >-
           Built two Power Automate flows that check in SharePoint whether each application has a
           test plan and update the overview automatically, with charts per domain.
-        - Wrote and carried out test plans together with application managers.
         - Trained a colleague who is continuing the work after my internship.
     - title: Work experience placement, Functional Management
       place: Municipality of Haarlem
