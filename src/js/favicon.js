@@ -9,6 +9,8 @@ for (let number = 1; number <= Number(icon.dataset.frames); number++) {
   frames.push(`/assets/favicon/frame-${number}.svg`);
 }
 const wantsCalm = matchMedia('(prefers-reduced-motion: reduce)');
+// With 24 frames the N takes a little over a second to write.
+const millisecondsPerFrame = 45;
 let timer;
 
 function play() {
@@ -20,7 +22,7 @@ function play() {
     icon.href = frames[next] ?? finished;
     if (next === frames.length) clearInterval(timer);
     next += 1;
-  }, 180);
+  }, millisecondsPerFrame);
 }
 
 // Fetch the frames up front, so the first run does not stutter.

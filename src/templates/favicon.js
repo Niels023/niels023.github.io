@@ -4,7 +4,9 @@ import { monogramBottom, monogramPath, monogramStrokes, monogramTop } from './mo
 export const blue = '#1f4fd8';
 
 // The animation in the tab shows the N being written in this many steps.
-export const faviconFrames = 6;
+// With 24 steps a stroke grows one pixel per step in a tab icon of 16 pixels,
+// so more steps would not look any smoother.
+export const faviconFrames = 24;
 
 // Boxes that cover the part of the N that is written so far. The strokes
 // come one after the other and each gets the same share of the time.
